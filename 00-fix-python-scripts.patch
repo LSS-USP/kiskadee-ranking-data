@@ -1,0 +1,48 @@
+diff -ru juliet-orig/py_common.py juliet/py_common.py
+--- juliet-orig/py_common.py	2017-09-19 14:08:39.841082317 -0300
++++ juliet/py_common.py	2017-09-19 14:12:03.570253765 -0300
+@@ -1,4 +1,4 @@
+-#! /usr/bin/env/python 3.0
++#!/usr/bin/env python3
+ #
+ # Contains common functions necessary for various python testcase scripts.
+ #
+@@ -390,26 +390,26 @@
+ 	"""
+ 	print("[" + time.ctime(None) + "] " + contents)
+ 	
+-def run_commands(commands, use_shell=False):
++def run_commands(command, use_shell=False):
+ 	"""
+ 	Runs a command as if it were run in the command prompt.  If you need to use commands such as
+ 	"cd, dir, etc", set use_shell to True.
+ 	"""
+-	command = " && ".join(commands)
++	command_str = " ".join(command)
+ 	
+ 	# Not using print_with_timestamp() here since we want to capture the time for the time diff
+ 	time_started = time.time()
+-	print("[" + time.ctime(time_started) + "] Started command: \"" + command + "\"")
++	print("[" + time.ctime(time_started) + "] Started command: \"" + command_str + "\"")
+ 	sys.stdout.flush()
+ 	
+ 	subprocess.check_call(command, shell=use_shell, stderr=sys.stderr, stdout=sys.stdout)
+ 	
+ 	# Not using print_with_timestamp() here since we want to capture the time for the time diff
+ 	time_ended = time.time()
+-	print("[" + time.ctime(time_ended) + "] Finished command: \"" + command + "\"")
++	print("[" + time.ctime(time_ended) + "] Finished command: \"" + command_str + "\"")
+ 	
+ 	elapsed_seconds = time_ended-time_started
+-	print_with_timestamp("Command \"" + command + "\" took " + str(elapsed_seconds) + " seconds to complete.")
++	print_with_timestamp("Command \"" + command_str + "\" took " + str(elapsed_seconds) + " seconds to complete.")
+ 
+ def run_analysis(test_case_path, build_file_regex, run_analysis_fx):
+ 	"""
+@@ -678,4 +678,4 @@
+ 			  seconds, "" if seconds==1 else "s")
+ 			  
+ 		return output
+-		
+\ No newline at end of file
++		
