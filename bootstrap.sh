@@ -11,3 +11,7 @@ if [ ! -d  juliet ]; then
   rm Juliet_Test_Suite_v1.2_for_C_Cpp.zip;
 fi
 
+# get c and cpp file lists
+find  juliet/testcases | grep -v '/CWE[^/]*w32\.c$|/CWE[^/]*wchar_t.*\.c$' | grep '/CWE[^/]*\.c$' > c_testcases.list;
+find  juliet/testcases | grep -v '/CWE[^/]*w32\.cpp$|/CWE[^/]*wchar_t.*\.cpp$' | grep '/CWE[^/]*\.cpp$' > cpp_testcases.list;
+
