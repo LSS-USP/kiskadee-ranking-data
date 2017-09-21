@@ -10,13 +10,13 @@ mkdir reports;
 # clang static analyzer
 mkdir reports/scan-build;
 pushd juliet;
-scan-build -o reports/scan-build make -f Makefile_all;
+scan-build -o ../reports/scan-build make -f Makefile_all;
 make -f Makefile_all clean;
 popd;
 
 # frama-c
 mkdir reports/frama-c;
-cat $C_FILES $CPP_FILES | xargs frama-c -val -value-log ew:reports/frama-c/frama-c.log -kernel-log ew:reports/frama-c/frama-c.log -cpp-extra-args='-Ijuliet/testcasesupport -lpthread' juliet/testcasesupport/std_thread.c juliet/testcasesupport/io.c juliet/testcasesupport/main_linux.cpp;
+for c_file in `cat $C_FILES`; do frama-c -val -value-log ew:reports/frama-c/frama-c.log -kernel-log ew:reports/frama-c/frama-c.log -cpp-extra-args='-Ijuliet/testcasesupport -DINCLUDEMAIN -U__cplusplus' juliet/testcasesupport/io.c juliet/testcasesupport/main_linux.cpp $c_file; done;
 make -f Makefile_all clean;
 
 # cppcheck
@@ -30,4 +30,4 @@ rm cppcheck.list;
 
 # flawfinder
 mkdir reports/flawfinder;
-cat $C_FILES $CPP_FILES | xargs flawfinder --savehitlist reports/flawfinder/flawfinder.log juliet/testcasesupport/std_thread.c juliet/testcasesupport/io.c juliet/testcasesupport/main_linux.cpp;
+for source_file in `cat $C_FILES $CPP_FILES`; do flawfinder juliet/testcasesupport/std_thread.c juliet/testcasesupport/io.c juliet/testcasesupport/main_linux.cpp $source_file >> reports/flawfinder/flawfinder.log; done;
