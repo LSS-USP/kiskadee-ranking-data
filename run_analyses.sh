@@ -1,7 +1,5 @@
 #!/bin/sh
 
-./bootstrap.sh
-
 C_FILES=c_testcases.list
 CPP_FILES=cpp_testcases.list
 rm -rf reports
@@ -16,7 +14,7 @@ popd;
 
 # frama-c
 mkdir reports/frama-c;
-for c_file in `cat $C_FILES`; do frama-c -val -value-log ew:reports/frama-c/frama-c.log -kernel-log ew:reports/frama-c/frama-c.log -cpp-extra-args='-Ijuliet/testcasesupport -DINCLUDEMAIN -U__cplusplus' juliet/testcasesupport/io.c juliet/testcasesupport/main_linux.cpp $c_file; done;
+for c_file in `cat $C_FILES`; do frama-c -val -value-log ew:reports/frama-c/$c_file.log -kernel-log ew:reports/frama-c/$c_file.log -cpp-extra-args='-Ijuliet/testcasesupport -DINCLUDEMAIN -U__cplusplus' juliet/testcasesupport/io.c juliet/testcasesupport/main_linux.cpp $c_file; done;
 make -f Makefile_all clean;
 
 # cppcheck
