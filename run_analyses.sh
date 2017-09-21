@@ -2,8 +2,8 @@
 
 ./bootstrap.sh
 
-$C_FILES=c_testcases.list
-$CPP_FILES=cpp_testcases.list
+C_FILES=c_testcases.list
+CPP_FILES=cpp_testcases.list
 rm -rf reports
 mkdir reports;
 
