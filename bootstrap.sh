@@ -1,6 +1,10 @@
 #!/bin/sh
 
 if [ ! -d  juliet ]; then
+  if [ ! -f /usr/bin/wget ]; then
+    echo 'Please, install wget and run again';
+    exit 1;
+  fi
   mkdir juliet;
   wget 'https://samate.nist.gov/SRD/testsuites/juliet/Juliet_Test_Suite_v1.2_for_C_Cpp.zip';
   unzip -d juliet Juliet_Test_Suite_v1.2_for_C_Cpp.zip > /dev/null;
