@@ -1,4 +1,4 @@
-## Exemplo de features
+## Feature examples
 
 ```
 position, tool, category, severity, redundancy_level, category_frequency, tool_fp_rate, positive?
@@ -29,8 +29,9 @@ To run this experiment, you need the following software installed
 * cppcheck
 * flawfinder
 * frama-c
+* scan-build (clang-analyzer)
 
-```
-./bootstrap.sh
-./run_analyses.py
-```
+Just run  `make` to download and prepare the test suite and start running the
+analyzers.
+
+The results will be stored under the `reports` directory.
