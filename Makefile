@@ -1,5 +1,5 @@
 analysis: bootstrap
-	./run_analysis.sh
+	./run_analyses.sh
 
 c_testcases.list cpp_testcases.list juliet: bootstrap.sh
 	./bootstrap.sh
