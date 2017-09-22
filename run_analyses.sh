@@ -11,7 +11,7 @@ echo 'Running scan-build (clang analyzer) analyses...'
 mkdir reports/scan-build;
 for mkfile in `cat $C_FILES $CPP_FILES | xargs -l -n1 dirname | sort -u`; do
   pushd $mkfile;
-  scan-build -o $ABS_REPORT_PATH/scan-build make > /dev/null;
+  scan-build -o $ABS_REPORT_PATH/scan-build make > /dev/null 2>&1;
   make clean;
   popd;
 done
