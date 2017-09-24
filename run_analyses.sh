@@ -24,7 +24,6 @@ for c_file in `cat $C_FILES`; do
   frama-c -val -value-log ew:reports/frama-c/framac.log -kernel-log ew:reports/frama-c/framac.log -cpp-extra-args='-Ijuliet/testcasesupport -DINCLUDEMAIN -U__cplusplus' juliet/testcasesupport/io.c $c_file > /dev/null;
   cat reports/frama-c/framac.log >> reports/frama-c/all.log;
 done;
-make -f Makefile_all clean;
 printf "\tDone\n"
 
 # cppcheck
