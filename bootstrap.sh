@@ -16,6 +16,6 @@ if [ ! -d  juliet ]; then
 fi
 
 # get c and cpp file lists
-find  juliet/testcases | grep -v '/CWE[^/]*w32.*\.c$\|/CWE[^/]*wchar_t.*\.c$' | grep '/CWE[^/]*\.c$' > c_testcases.list;
-find  juliet/testcases | grep -v '/CWE[^/]*w32.*\.cpp$\|/CWE[^/]*wchar_t.*\.cpp$' | grep '/CWE[^/]*\.cpp$' > cpp_testcases.list;
+find  juliet/testcases | grep -v '/CWE[^/]*w32.*\.c$\|/CWE[^/]*wchar_t.*\.c$' | grep '/CWE[^/]*\.c$' | sort -u > c_testcases.list;
+find  juliet/testcases | grep -v '/CWE[^/]*w32.*\.cpp$\|/CWE[^/]*wchar_t.*\.cpp$' | grep '/CWE[^/]*\.cpp$' | sort -u > cpp_testcases.list;
 
