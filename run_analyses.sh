@@ -57,7 +57,7 @@ find  juliet/testcases | grep '/CWE[^/]*w32.*\.c$\|/CWE[^/]*wchar_t.*\.c$' | sor
 find  juliet/testcases | grep '/CWE[^/]*w32.*\.cpp$\|/CWE[^/]*wchar_t.*\.cpp$' | sort -u > cpp_testcases.toremove;
 sort $C_FILES $C_FILES c_testcases.toremove | uniq -u | xargs rm
 sort $CPP_FILES $CPP_FILES cpp_testcases.toremove | uniq -u | xargs rm
-flawfinder juliet/testcasesupport -S juliet/testcases > reports/flawfinder/flawfinder.log;
+flawfinder juliet/testcasesupport juliet/testcases > reports/flawfinder/flawfinder.log;
 rm -rf juliet
 mv juliet_backup juliet
 printf "\tDone\n"
