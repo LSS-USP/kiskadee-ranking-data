@@ -59,5 +59,6 @@ sort $C_FILES $C_FILES c_testcases.toremove | uniq -u | xargs rm
 sort $CPP_FILES $CPP_FILES cpp_testcases.toremove | uniq -u | xargs rm
 flawfinder juliet/testcasesupport juliet/testcases > reports/flawfinder/flawfinder.log;
 rm -rf juliet
+rm c_testcases.toremove cpp_testcases.toremove
 mv juliet_backup juliet
 printf "\tDone\n"
