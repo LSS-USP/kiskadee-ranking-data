@@ -24,7 +24,7 @@ cat $C_FILES $CPP_FILES > cppcheck.list;
 echo juliet/testcasesupport/std_thread.c >> cppcheck.list
 echo juliet/testcasesupport/io.c >> cppcheck.list
 echo juliet/testcasesupport/main_linux.cpp >> cppcheck.list
-cppcheck -I/home/athos/USP/pesquisa/experiments/juliet/testcasesupport --file-list=cppcheck.list 2> reports/cppcheck/cppcheck.log 1> /dev/null;
+cppcheck -I/home/athos/USP/pesquisa/experiments/juliet/testcasesupport --file-list=cppcheck.list cppcheck --enable=all --xml --xml-version=2cppcheck 2> reports/cppcheck/cppcheck.log 1> /dev/null;
 rm cppcheck.list;
 printf "\tDone\n"
 
