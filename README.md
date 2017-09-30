@@ -26,17 +26,20 @@ analyzer and false otherwise
 To run this experiment, you need the following software installed
 
 * python >= 3.6
-* cppcheck
-* flawfinder
-* frama-c
-* scan-build (clang-analyzer)
+* RPM
+* firehose
+* RPM packages for
+  * cppcheck
+  * flawfinder
+  * frama-c
+  * scan-build (clang-analyzer)
 
 Just run  `make` to download and prepare the test suite and start running the
 analyzers.
 
 The results will be stored under the `reports` directory.
 
-# Log
+# Work Log
 
 ## Collecting static analysis reports:
 
