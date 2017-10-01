@@ -1,8 +1,10 @@
 ## Feature examples
 
 ```
-position, tool, category, severity, redundancy_level, category_frequency, tool_fp_rate, positive?
-foo.c:47, cppcheck, buffer overflow, critical, 1, 10, 0.3,  true
+position, tool, category, severity, redundancy_level, category_frequency, tool_fp_rate, neighbors, positive?
+foo.c:47, cppcheck, buffer overflow, critical, 1, 10, 0.3, ?, true
+
+neighbors would be a feature to catch other warnings around the same warning
 ```
 
 It is also possible that we would benefit of a binary feature for each of the
@@ -40,6 +42,11 @@ analyzers.
 The results will be stored under the `reports` directory.
 
 # Work Log
+
+### 2017-10-01
+
+* some entries in the functions scope list end with ':'. It seems they belong to  C++ testcases, this needs further inverstigation
+* there will be duplicates for class names when trying to determine functions scopes, in these cases, the largest ranges should be considered (hoping we are considering the whole class)
 
 ## Collecting static analysis reports:
 
@@ -99,17 +106,24 @@ cwe   tool  total_warnings  warnings_inside_good_or_bad_functions  warnings_insi
 total
 ```
 
-To label a warning, first we need to find in which function it belongs, the following
-code snippet might help (the 1st line gives the function name and starting
-line, the second line gives the function last line this must go in a script):
+To label a warning, first we need to find in which function it belongs, the
+`get_functions_info.sh` script outputs a file with all function and class locations.
 
-```
-ctags -x --c-kinds=f filename.c
-awk 'NR > first && /^}$/ { print NR; exit }' first=$FIRST_LINE filename.c
-```
+As per the Juliet 1.2 documentation:
 
-with this data, we should start generating a CSV file, with information about the
-tool, file, line, label
+* Warnings in a function with the word "bad" in its name are TRUE POSITIVES
+* Warnings in a class with the word "bad" in the FILE NAME are TRUE POSITIVES
+* Warnings in a function with the word "good" in its name are FALSE POSITIVES
+* Warnings in a class with the word "good" in the FILE NAME are FALSE POSITIVES
+
+The warnings must match the CWE flaw category to fit in any of the above
+classifications, i.e., if a warning is triggered in a function with the word
+bad in its name for a division by zero test case, and the warning message says
+a null pointer derreference was found, the warning must be ignored and not
+included in our trainning set.
+
+**with this data, we should start generating a CSV file, with information about the
+tool, file, line, label**
 
 ### Adding features
 
