@@ -76,6 +76,8 @@ use them to train our model. We need to
   case (this is needed because accidental flaws may exist)
 * Collect potential features for the training set
 
+To aid this task, we first convert all the reports to a common report syntax (firehose)
+
 ### Labelling true/false positives
 
 We want to use the regular expressions provided by Juliet documentation to
