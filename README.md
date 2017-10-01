@@ -47,6 +47,7 @@ The results will be stored under the `reports` directory.
 
 * some entries in the functions scope list end with ':'. It seems they belong to  C++ testcases, this needs further inverstigation
 * there will be duplicates for class names when trying to determine functions scopes, in these cases, the largest ranges should be considered (hoping we are considering the whole class)
+* for confirmation on the latest script, do check s01/CWE690_NULL_Deref_From_Return__int64_t_realloc_83_bad.cpp file scope
 
 ## Collecting static analysis reports:
 
