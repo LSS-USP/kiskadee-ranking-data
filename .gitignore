@@ -2,3 +2,5 @@ juliet
 *.zip
 reports
 *.list
+*.tar.gz
+.venv
