@@ -43,12 +43,4 @@ rpm -qi cppcheck | grep Version | awk '{ print $3 }'
 rpm -qi clang-analyzer | grep Version | awk '{ print $3 }'
 
 # Total number of warnings triggered
-# frama-c
-cat reports/frama-c/frama-c.log | wc -l
-# flawfinder
-cat reports/flawfinder/flawfinder.log | grep '^juliet' | wc -l
-# cppcheck
-cat reports/cppcheck/cppcheck.log | wc -l
-# scan-build (clang analyezer)
-# TODO: not sure if this is correct yet, better convert to firehose
-find reports/scan-build -type f | xargs -n1 grep category | wc -l
+# this must come from the firehose parser
