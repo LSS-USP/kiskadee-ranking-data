@@ -44,15 +44,41 @@ def convert_reports_to_firehose():
         cppcheck_firehose_report = cppcheck.parse_file(cppcheck_raw_report)
         reports.append(cppcheck_firehose_report)
 
-    # print(reports[0].results[0].location.file.givenpath)
-    # print(reports[0].results[0].location.point.line)
     os.makedirs('reports/firehose')
     for report in reports:
         tool_name = report.metadata.generator.name
         fh_report_path = 'reports/firehose/' + tool_name + '.xml'
-        with open(fh_report_path, 'w') as fh_report:
-            fh_report.write(str(report.to_xml()))
-        # print(len(report.results))
+        with open(fh_report_path, 'wb') as fh_report:
+            report.to_xml().write(fh_report, encoding='utf-8')
+
+
+def get_reports():
+    results = []
+    for fh_xml_file in glob.glob(os.path.join('reports', 'firehose', '*.xml')):
+        results.append(Analysis.from_xml(fh_xml_file))
+    return results
+
+
+def label_reports(reports):
+    """
+    This function labels each warning as true or false positive. Warnings whose
+    label is not possible to determine according to Juliet documentation, are
+    removed from the output list
+
+    in: list with Analysis objects from Juliet analyses
+    out: list with Analysis objects labeled as true or false positives.
+    """
+    # TODO: create hash with filenames, containing each function name, start and end.
+    # maybe we could have sth like: function['CWEZZZ_foo_01.c'][34] = 'function_name'
+    # this could be achieved with a loop for each line of the function names file
+    # where it just write the name of each functions in the right list's specifit indexes
+    for report in reports:
+        for warning in report.results:
+            file_name = warning.location.file.givenpath
+            file_line = warning.location.point.line
+            message = warning.message.text
+            cwe = warning.cwe
+            severity = warning.severity
 
 
 if __name__ == "__main__":
@@ -60,3 +86,6 @@ if __name__ == "__main__":
     # if not, convert them
     if not os.path.exists('reports/firehose'):
         convert_reports_to_firehose()
+
+    reports = get_reports()
+    label_reports(reports)
