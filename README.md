@@ -51,6 +51,15 @@ The results will be stored under the `reports` directory.
 * for confirmation on the latest script, do check s01/CWE690_NULL_Deref_From_Return__int64_t_realloc_83_bad.cpp file scope
 * note that for the cpp cases, we can just check the bad|good string in the file names
 
+### 2017-10-02
+
+* You can check that there are no repeated file names in the set of test cases
+  used for this experiment with the folowing command:
+
+```
+test `cat c_testcases.list cpp_testcases.list | sed 's/.*\/\([^/]*\.c[p]*\).*/\1/' | sort -u | wc -l` == `cat c_testcases.list cpp_testcases.list | wc -l` && echo 'There are no repeated file names in the used set of the test suite'
+```
+
 ## Collecting static analysis reports:
 
 Static analysis reports were collected by runnings 4 static analysis tools in
