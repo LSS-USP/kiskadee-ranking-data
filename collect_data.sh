@@ -43,4 +43,22 @@ rpm -qi cppcheck | grep Version | awk '{ print $3 }'
 rpm -qi clang-analyzer | grep Version | awk '{ print $3 }'
 
 # Total number of warnings triggered
-# this must come from the firehose parser
+# this must come from the firehose parser (python file)
+# frama-c
+# flawfinder
+# cppcheck
+# scan-build
+
+# Total number of warnings labeled
+# frama-c
+## true positives
+## false positives
+# flawfinder
+## true positives
+## false positives
+# cppcheck
+## true positives
+## false positives
+# scan-build
+## true positives
+## false positives
