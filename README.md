@@ -30,6 +30,7 @@ To run this experiment, you need the following software installed
 * python >= 3.6
 * RPM
 * firehose
+* ctags
 * RPM packages for
   * cppcheck
   * flawfinder
