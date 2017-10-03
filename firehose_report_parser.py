@@ -59,6 +59,34 @@ def get_reports():
     return results
 
 
+# TODO: rename this function and returning list.
+def get_function_scopes():
+    function_scopes = {}
+    with open('testcase_functions_scope.list', 'r') as scope_list:
+        for line in scope_list:
+            absolute_path, function_name, start, end = line.split(':')
+            file_name = os.path.basename(absolute_path)
+            if file_name not in function_scopes:
+                function_scopes[file_name] = {}
+            label = ''
+            # what if cpp classes and functions overlap here?
+            if 'bad.cpp' in file_name:
+                label = 'bad'
+            elif 'good.cpp' in file_name:
+                label = 'good'
+            elif 'bad' in function_name:
+                label = 'bad'
+            elif 'good' in function_name:
+                label = 'good'
+            else:
+                # we do not want to check warnings in other functions
+                # as pointed out by Juliet's documentation
+                continue
+            for i in range(start, end + 1):
+                function_scopes[file_name][i] = label
+    return function_scopes
+
+
 def label_reports(reports):
     """
     This function labels each warning as true or false positive. Warnings whose
