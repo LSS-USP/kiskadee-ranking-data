@@ -4,7 +4,10 @@
 position, tool, category, severity, redundancy_level, category_frequency, tool_fp_rate, neighbors, positive?
 foo.c:47, cppcheck, buffer overflow, critical, 1, 10, 0.3, ?, true
 
-neighbors would be a feature to catch other warnings around the same warning
+* neighbors would be a feature to catch other warnings around the same warning
+* since we are collecting regular expressions about the warning messages to
+  label the warnings, we can cluster them in specific categories with these
+  regexes (buffer, div0, pointer, etc)
 ```
 
 It is also possible that we would benefit of a binary feature for each of the
@@ -132,10 +135,15 @@ The warnings must match the CWE flaw category to fit in any of the above
 classifications, i.e., if a warning is triggered in a function with the word
 bad in its name for a division by zero test case, and the warning message says
 a null pointer derreference was found, the warning must be ignored and not
-included in our trainning set.
+included in our trainning set. This was done manually, by verifying each
+different message string in each warning triggered against each different CWE.
+It is important that the warnings do match the CWE precisely, so we have our
+trainning set labaled correctly (less is more).
+`TODO: specify files used for the manual inspection`
 
 Note that for the cpp cases, we can just check the bad|good string in the file
-names (ending in good.cpp or bad.cpp)
+names (not just ending in good.cpp or bad.cpp, since there may exist suffixes
+or preffixes, like goodG2B.cpp)
 
 **with this data, we should start generating a CSV file, with information about the
 tool, file, line, label**
