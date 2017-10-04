@@ -138,7 +138,12 @@ a null pointer derreference was found, the warning must be ignored and not
 included in our trainning set. This was done manually, by verifying each
 different message string in each warning triggered against each different CWE.
 It is important that the warnings do match the CWE precisely, so we have our
-trainning set labaled correctly (less is more).
+trainning set labaled correctly (less is more). This is VERY important, since
+there will often exist a similar case with a false positive in the test case
+which we will label as false positive. If we accept strings with related flaws
+for a test case, where this related flaw may show up in the fix for that CWE,
+we will assign wrong labels to some warnings, hence, it is better to not include
+those warnings at all.
 `TODO: specify files used for the manual inspection`
 
 Note that for the cpp cases, we can just check the bad|good string in the file
