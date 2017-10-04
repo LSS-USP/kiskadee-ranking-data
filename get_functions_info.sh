@@ -9,7 +9,7 @@ FUNCTION_REGEX="[Gg]ood|[Bb]ad"
 rm -f $OUTPUT_FILE
 
 for FILENAME in `cat c_testcases.list cpp_testcases.list`; do
-  for PARTIAL in `ctags -x --c-kinds=f $FILENAME | grep ' function \| class ' | awk '{ print $1 ":" $3 }'`; do
+  for PARTIAL in `ctags -x --c-kinds=f $FILENAME | grep ' function ' | awk '{ print $1 ":" $3 }'`; do
     if [[ $PARTIAL =~ $FUNCTION_REGEX ]]; then
       FIRST_LINE=`echo $PARTIAL | cut -d ':' -f2`
       # heuristics here is that if a line starts with }, it is the end of a function
