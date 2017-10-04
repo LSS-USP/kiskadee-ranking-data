@@ -1,0 +1,720 @@
+CWE121_Stack_Based_Buffer_Overflow	accessing out of bounds index.
+CWE121_Stack_Based_Buffer_Overflow	Address of stack memory allocated by call to alloca() on line X returned to caller
+CWE121_Stack_Based_Buffer_Overflow	all target addresses were invalid. This path is assumed to be dead.
+CWE121_Stack_Based_Buffer_Overflow	Assigned value is garbage or undefined
+CWE121_Stack_Based_Buffer_Overflow	Completely invalid destination for assigns
+  CWE121_Stack_Based_Buffer_Overflow	Does not check for buffer overflows when concatenating to destination (CWE-120). Consider using strcat_s, strncat, or strlcat (warning, strncat is easily misused).
+  CWE121_Stack_Based_Buffer_Overflow	Does not check for buffer overflows when copying to destination (CWE-120). Consider using strcpy_s, strncpy, or strlcpy (warning, strncpy is easily misused).
+  CWE121_Stack_Based_Buffer_Overflow	Does not check for buffer overflows when copying to destination (CWE-120). Make sure destination can always hold the source data.
+  CWE121_Stack_Based_Buffer_Overflow	Easily used incorrectly; doesn't always \0-terminate or check for invalid pointers (CWE-120).
+  CWE121_Stack_Based_Buffer_Overflow	Easily used incorrectly (e.g., incorrectly computing the correct maximum size to add) (CWE-120). Consider strcat_s, strlcat, or automatically resizing strings.
+CWE121_Stack_Based_Buffer_Overflow	locals X escaping the scope of X through X
+  CWE121_Stack_Based_Buffer_Overflow	out of bounds write.
+  CWE121_Stack_Based_Buffer_Overflow	Size argument is greater than the free space in the destination buffer
+  CWE121_Stack_Based_Buffer_Overflow	Size argument is greater than the length of the destination buffer
+  CWE121_Stack_Based_Buffer_Overflow	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+  CWE121_Stack_Based_Buffer_Overflow	String copy function overflows destination buffer
+
+CWE122_Heap_Based_Buffer_Overflow	accessing out of bounds index.
+CWE122_Heap_Based_Buffer_Overflow	Assigned value is garbage or undefined
+CWE122_Heap_Based_Buffer_Overflow	Buffer is accessed out of bounds.
+CWE122_Heap_Based_Buffer_Overflow	Completely invalid destination for assigns
+  CWE122_Heap_Based_Buffer_Overflow	Does not check for buffer overflows when concatenating to destination (CWE-120). Consider using strcat_s, strncat, or strlcat (warning, strncat is easily misused).
+  CWE122_Heap_Based_Buffer_Overflow	Does not check for buffer overflows when copying to destination (CWE-120). Consider using strcpy_s, strncpy, or strlcpy (warning, strncpy is easily misused).
+  CWE122_Heap_Based_Buffer_Overflow	Does not check for buffer overflows when copying to destination (CWE-120). Make sure destination can always hold the source data.
+  CWE122_Heap_Based_Buffer_Overflow	Easily used incorrectly; doesn't always \0-terminate or check for invalid pointers (CWE-120).
+  CWE122_Heap_Based_Buffer_Overflow	Easily used incorrectly (e.g., incorrectly computing the correct maximum size to add) (CWE-120). Consider strcat_s, strlcat, or automatically resizing strings.
+CWE122_Heap_Based_Buffer_Overflow	Memory leak: X
+CWE122_Heap_Based_Buffer_Overflow	non-finite double value.
+  CWE122_Heap_Based_Buffer_Overflow	out of bounds write.
+CWE122_Heap_Based_Buffer_Overflow	Potential leak of memory pointed to by X
+  CWE122_Heap_Based_Buffer_Overflow	Size argument is greater than the free space in the destination buffer
+  CWE122_Heap_Based_Buffer_Overflow	Size argument is greater than the length of the destination buffer
+CWE122_Heap_Based_Buffer_Overflow	Size of pointer X used instead of size of its data.
+  CWE122_Heap_Based_Buffer_Overflow	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+  CWE122_Heap_Based_Buffer_Overflow	String copy function overflows destination buffer
+CWE122_Heap_Based_Buffer_Overflow	The allocated size 10 is not a multiple of the underlying type's size.
+
+CWE123_Write_What_Where_Condition	Address of stack memory associated with local variable X upon returning to the caller.  This will be a dangling reference
+CWE123_Write_What_Where_Condition	Completely invalid destination for assigns
+CWE123_Write_What_Where_Condition	Function parameter X should be passed by reference.
+CWE123_Write_What_Where_Condition	locals X escaping the scope of X through X
+  CWE123_Write_What_Where_Condition	out of bounds write.
+
+CWE124_Buffer_Underwrite	accessing out of bounds index.
+CWE124_Buffer_Underwrite	all target addresses were invalid. This path is assumed to be dead.
+CWE124_Buffer_Underwrite	Array access (from variable X) results in a null pointer dereference
+  CWE124_Buffer_Underwrite	Array index -5 is out of bounds.
+CWE124_Buffer_Underwrite	Assigned value is garbage or undefined
+CWE124_Buffer_Underwrite	Completely invalid destination for assigns
+  CWE124_Buffer_Underwrite	Does not check for buffer overflows when copying to destination (CWE-120). Consider using strcpy_s, strncpy, or strlcpy (warning, strncpy is easily misused).
+  CWE124_Buffer_Underwrite	Does not check for buffer overflows when copying to destination (CWE-120). Make sure destination can always hold the source data.
+  CWE124_Buffer_Underwrite	Easily used incorrectly; doesn't always \0-terminate or check for invalid pointers (CWE-120).
+CWE124_Buffer_Underwrite	locals X escaping the scope of X through X
+  CWE124_Buffer_Underwrite	out of bounds write.
+  CWE124_Buffer_Underwrite	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+CWE124_Buffer_Underwrite	Undefined behaviour, pointer arithmetic X is out of bounds.
+
+  CWE126_Buffer_Overread	accessing out of bounds index.
+CWE126_Buffer_Overread	accessing uninitialized left-value.
+CWE126_Buffer_Overread	Array access (from variable X) results in a null pointer dereference
+  CWE126_Buffer_Overread	Array X accessed at index X, which is out of bounds.
+CWE126_Buffer_Overread	Assigned value is garbage or undefined
+CWE126_Buffer_Overread	Completely invalid destination for assigns
+CWE126_Buffer_Overread	Dereference of undefined pointer value
+  CWE126_Buffer_Overread	Does not handle strings that are not \0-terminated; if given one it may perform an over-read (it could cause a crash if unprotected) (CWE-126).
+CWE126_Buffer_Overread	Easily used incorrectly; doesn't always \0-terminate or check for invalid pointers (CWE-120).
+CWE126_Buffer_Overread	Function call argument is an uninitialized value
+CWE126_Buffer_Overread	locals X escaping the scope of X through X
+CWE126_Buffer_Overread	Null pointer passed as an argument to a X parameter
+  CWE126_Buffer_Overread	out of bounds read.
+CWE126_Buffer_Overread	Possible null pointer dereference: X
+CWE126_Buffer_Overread	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+CWE126_Buffer_Overread	Uninitialized variable: X
+
+  CWE127_Buffer_Underread	accessing out of bounds index.
+CWE127_Buffer_Underread	accessing uninitialized left-value.
+CWE127_Buffer_Underread	Array access (from variable X) results in a null pointer dereference
+  CWE127_Buffer_Underread	Array index -5 is out of bounds.
+CWE127_Buffer_Underread	Assigned value is garbage or undefined
+CWE127_Buffer_Underread	Completely invalid destination for assigns
+CWE127_Buffer_Underread	Dereference of undefined pointer value
+  CWE127_Buffer_Underread	Does not handle strings that are not \0-terminated; if given one it may perform an over-read (it could cause a crash if unprotected) (CWE-126).
+CWE127_Buffer_Underread	Easily used incorrectly; doesn't always \0-terminate or check for invalid pointers (CWE-120).
+CWE127_Buffer_Underread	Function call argument is an uninitialized value
+CWE127_Buffer_Underread	locals X escaping the scope of X through X
+CWE127_Buffer_Underread	Null pointer passed as an argument to a X parameter
+  CWE127_Buffer_Underread	out of bounds read.
+CWE127_Buffer_Underread	Possible null pointer dereference: X
+CWE127_Buffer_Underread	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+CWE127_Buffer_Underread	Undefined behaviour, pointer arithmetic X is out of bounds.
+CWE127_Buffer_Underread	Uninitialized variable: X
+
+CWE134_Uncontrolled_Format_String	Address of stack memory associated with local variable X upon returning to the caller.  This will be a dangling reference
+  CWE134_Uncontrolled_Format_String	If format strings can be influenced by an attacker, they can be exploited (CWE-134). Use a constant for the format specification.
+
+CWE188_Reliance_on_Data_Memory_Layout	Same expression on both sides of X.
+
+CWE190_Integer_Overflow	Completely invalid destination for assigns
+CWE190_Integer_Overflow	%lld in format string (no. 1) requires X but the argument type is X.
+CWE190_Integer_Overflow	non-finite double value.
+CWE190_Integer_Overflow	overflow in conversion from floating-point to integer.
+CWE190_Integer_Overflow	Same expression on both sides of X.
+CWE190_Integer_Overflow	signed overflow.
+CWE190_Integer_Overflow	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+CWE190_Integer_Overflow	The scope of the variable X can be reduced.
+  CWE190_Integer_Overflow	Unless checked, the resulting number can exceed the expected range (CWE-190). If source untrusted, check both minimum and maximum, even if the input had no minus sign (large numbers can roll over into negative number; consider saving to an unsigned value if that is intended).
+
+CWE191_Integer_Underflow	Completely invalid destination for assigns
+CWE191_Integer_Underflow	%lld in format string (no. 1) requires X but the argument type is X.
+CWE191_Integer_Underflow	Same expression on both sides of X.
+CWE191_Integer_Underflow	signed overflow.
+CWE191_Integer_Underflow	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+CWE191_Integer_Underflow	The scope of the variable X can be reduced.
+  CWE191_Integer_Underflow	Unless checked, the resulting number can exceed the expected range (CWE-190). If source untrusted, check both minimum and maximum, even if the input had no minus sign (large numbers can roll over into negative number; consider saving to an unsigned value if that is intended).
+
+CWE194_Unexpected_Sign_Extension	accessing out of bounds index.
+CWE194_Unexpected_Sign_Extension	Array index -1 is out of bounds.
+CWE194_Unexpected_Sign_Extension	Call to X has an allocation size of 0 bytes
+CWE194_Unexpected_Sign_Extension	Completely invalid destination for assigns
+CWE194_Unexpected_Sign_Extension	Does not check for buffer overflows when copying to destination (CWE-120). Make sure destination can always hold the source data.
+CWE194_Unexpected_Sign_Extension	Easily used incorrectly; doesn't always \0-terminate or check for invalid pointers (CWE-120).
+CWE194_Unexpected_Sign_Extension	Invalid malloc() argument nr 1. The value is -1 but the valid values are X.
+CWE194_Unexpected_Sign_Extension	Invalid memcpy() argument nr 3. The value is -1 but the valid values are X.
+CWE194_Unexpected_Sign_Extension	Invalid memmove() argument nr 3. The value is -1 but the valid values are X.
+CWE194_Unexpected_Sign_Extension	Invalid memset() argument nr 3. The value is -2 but the valid values are X.
+CWE194_Unexpected_Sign_Extension	Invalid strncpy() argument nr 3. The value is -1 but the valid values are X.
+CWE194_Unexpected_Sign_Extension	Memory allocation size is negative.
+CWE194_Unexpected_Sign_Extension	out of bounds write.
+CWE194_Unexpected_Sign_Extension	Same expression on both sides of X.
+CWE194_Unexpected_Sign_Extension	signed overflow.
+CWE194_Unexpected_Sign_Extension	Size argument is greater than the length of the destination buffer
+CWE194_Unexpected_Sign_Extension	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+CWE194_Unexpected_Sign_Extension	The scope of the variable X can be reduced.
+CWE194_Unexpected_Sign_Extension	Unless checked, the resulting number can exceed the expected range (CWE-190). If source untrusted, check both minimum and maximum, even if the input had no minus sign (large numbers can roll over into negative number; consider saving to an unsigned value if that is intended).
+
+CWE195_Signed_to_Unsigned_Conversion_Error	accessing out of bounds index.
+CWE195_Signed_to_Unsigned_Conversion_Error	Array index -1 is out of bounds.
+CWE195_Signed_to_Unsigned_Conversion_Error	Completely invalid destination for assigns
+CWE195_Signed_to_Unsigned_Conversion_Error	Does not check for buffer overflows when copying to destination (CWE-120). Make sure destination can always hold the source data.
+CWE195_Signed_to_Unsigned_Conversion_Error	Easily used incorrectly; doesn't always \0-terminate or check for invalid pointers (CWE-120).
+CWE195_Signed_to_Unsigned_Conversion_Error	Invalid malloc() argument nr 1. The value is -1 but the valid values are X.
+CWE195_Signed_to_Unsigned_Conversion_Error	Invalid memcpy() argument nr 3. The value is -1 but the valid values are X.
+CWE195_Signed_to_Unsigned_Conversion_Error	Invalid memmove() argument nr 3. The value is -1 but the valid values are X.
+CWE195_Signed_to_Unsigned_Conversion_Error	Invalid memset() argument nr 3. The value is -2 but the valid values are X.
+CWE195_Signed_to_Unsigned_Conversion_Error	Invalid strncpy() argument nr 3. The value is -1 but the valid values are X.
+CWE195_Signed_to_Unsigned_Conversion_Error	Memory allocation size is negative.
+CWE195_Signed_to_Unsigned_Conversion_Error	out of bounds write.
+CWE195_Signed_to_Unsigned_Conversion_Error	Same expression on both sides of X.
+CWE195_Signed_to_Unsigned_Conversion_Error	signed overflow.
+CWE195_Signed_to_Unsigned_Conversion_Error	Size argument is greater than the length of the destination buffer
+CWE195_Signed_to_Unsigned_Conversion_Error	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+CWE195_Signed_to_Unsigned_Conversion_Error	The scope of the variable X can be reduced.
+CWE195_Signed_to_Unsigned_Conversion_Error	Unless checked, the resulting number can exceed the expected range (CWE-190). If source untrusted, check both minimum and maximum, even if the input had no minus sign (large numbers can roll over into negative number; consider saving to an unsigned value if that is intended).
+
+CWE196_Unsigned_to_Signed_Conversion_Error	Same expression on both sides of X.
+
+CWE197_Numeric_Truncation_Error	Completely invalid destination for assigns
+CWE197_Numeric_Truncation_Error	Same expression on both sides of X.
+CWE197_Numeric_Truncation_Error	signed overflow.
+CWE197_Numeric_Truncation_Error	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+CWE197_Numeric_Truncation_Error	The scope of the variable X can be reduced.
+CWE197_Numeric_Truncation_Error	Unless checked, the resulting number can exceed the expected range (CWE-190). If source untrusted, check both minimum and maximum, even if the input had no minus sign (large numbers can roll over into negative number; consider saving to an unsigned value if that is intended).
+
+CWE23_Relative_Path_Traversal	Address of stack memory associated with local variable X upon returning to the caller.  This will be a dangling reference
+CWE23_Relative_Path_Traversal	Check when opening files - can an attacker redirect it (via symlinks), force the opening of special file type (e.g., device files), move things around to create a race condition, control its ancestors, or change its contents? (CWE-362).
+CWE23_Relative_Path_Traversal	Condition X is always false
+CWE23_Relative_Path_Traversal	Condition X is always true
+CWE23_Relative_Path_Traversal	Does not check for buffer overflows when concatenating to destination (CWE-120). Consider using strcat_s, strncat, or strlcat (warning, strncat is easily misused). Risk is low because the source is a constant string.
+CWE23_Relative_Path_Traversal	Does not handle strings that are not \0-terminated; if given one it may perform an over-read (it could cause a crash if unprotected) (CWE-126).
+CWE23_Relative_Path_Traversal	Easily used incorrectly (e.g., incorrectly computing the correct maximum size to add) (CWE-120). Consider strcat_s, strlcat, or automatically resizing strings.
+CWE23_Relative_Path_Traversal	Same expression on both sides of X.
+CWE23_Relative_Path_Traversal	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+
+CWE242_Use_of_Inherently_Dangerous_Function	Condition X is always false
+CWE242_Use_of_Inherently_Dangerous_Function	Condition X is always true
+CWE242_Use_of_Inherently_Dangerous_Function	Does not check for buffer overflows (CWE-120, CWE-20). Use fgets() instead.
+CWE242_Use_of_Inherently_Dangerous_Function	Obsolete function X called. It is recommended to use X or X instead.
+CWE242_Use_of_Inherently_Dangerous_Function	Same expression on both sides of X.
+CWE242_Use_of_Inherently_Dangerous_Function	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+
+CWE252_Unchecked_Return_Value	Condition X is always false
+CWE252_Unchecked_Return_Value	Condition X is always true
+CWE252_Unchecked_Return_Value	Does not handle strings that are not \0-terminated; if given one it may perform an over-read (it could cause a crash if unprotected) (CWE-126).
+CWE252_Unchecked_Return_Value	It's unclear if the %s limit in the format string is small enough (CWE-120). Check that the limit is sufficiently small, or use a different input function.
+CWE252_Unchecked_Return_Value	Same expression on both sides of X.
+CWE252_Unchecked_Return_Value	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+
+CWE253_Incorrect_Check_of_Function_Return_Value	Condition X is always false
+CWE253_Incorrect_Check_of_Function_Return_Value	Condition X is always true
+CWE253_Incorrect_Check_of_Function_Return_Value	Does not handle strings that are not \0-terminated; if given one it may perform an over-read (it could cause a crash if unprotected) (CWE-126).
+CWE253_Incorrect_Check_of_Function_Return_Value	It's unclear if the %s limit in the format string is small enough (CWE-120). Check that the limit is sufficiently small, or use a different input function.
+CWE253_Incorrect_Check_of_Function_Return_Value	pointer comparison.
+CWE253_Incorrect_Check_of_Function_Return_Value	Same expression on both sides of X.
+CWE253_Incorrect_Check_of_Function_Return_Value	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+
+CWE364_Signal_Handler_Race_Condition	out of bounds write.
+CWE364_Signal_Handler_Race_Condition	Same expression on both sides of X.
+
+CWE366_Race_Condition_Within_Thread	Completely invalid destination for assigns clause *((char *)args + (0 ..)).
+CWE366_Race_Condition_Within_Thread	Completely invalid destination for assigns clause *lock. Ignoring.
+CWE366_Race_Condition_Within_Thread	Completely invalid destination for assigns clause *start. Ignoring.
+CWE366_Race_Condition_Within_Thread	Condition X is always false
+CWE366_Race_Condition_Within_Thread	Condition X is always true
+CWE366_Race_Condition_Within_Thread	Same expression on both sides of X.
+
+CWE367_TOC_TOU	accessing out of bounds index.
+CWE367_TOC_TOU	Condition X is always false
+CWE367_TOC_TOU	Condition X is always true
+CWE367_TOC_TOU	Does not handle strings that are not \0-terminated; if given one it may perform an over-read (it could cause a crash if unprotected) (CWE-126).
+CWE367_TOC_TOU	Same expression on both sides of X.
+CWE367_TOC_TOU	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+
+  CWE369_Divide_by_Zero	division by zero.
+  CWE369_Divide_by_Zero	Division by zero
+  CWE369_Divide_by_Zero	Division by zero.
+CWE369_Divide_by_Zero	non-finite double value.
+CWE369_Divide_by_Zero	non-finite float value.
+CWE369_Divide_by_Zero	overflow in conversion from floating-point to integer.
+CWE369_Divide_by_Zero	signed overflow.
+CWE369_Divide_by_Zero	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+CWE369_Divide_by_Zero	Unless checked, the resulting number can exceed the expected range (CWE-190). If source untrusted, check both minimum and maximum, even if the input had no minus sign (large numbers can roll over into negative number; consider saving to an unsigned value if that is intended).
+
+CWE36_Absolute_Path_Traversal	Address of stack memory associated with local variable X upon returning to the caller.  This will be a dangling reference
+CWE36_Absolute_Path_Traversal	Check when opening files - can an attacker redirect it (via symlinks), force the opening of special file type (e.g., device files), move things around to create a race condition, control its ancestors, or change its contents? (CWE-362).
+CWE36_Absolute_Path_Traversal	Condition X is always false
+CWE36_Absolute_Path_Traversal	Condition X is always true
+CWE36_Absolute_Path_Traversal	Does not check for buffer overflows when concatenating to destination (CWE-120). Consider using strcat_s, strncat, or strlcat (warning, strncat is easily misused). Risk is low because the source is a constant string.
+CWE36_Absolute_Path_Traversal	Does not handle strings that are not \0-terminated; if given one it may perform an over-read (it could cause a crash if unprotected) (CWE-126).
+CWE36_Absolute_Path_Traversal	Easily used incorrectly (e.g., incorrectly computing the correct maximum size to add) (CWE-120). Consider strcat_s, strlcat, or automatically resizing strings.
+CWE36_Absolute_Path_Traversal	Same expression on both sides of X.
+CWE36_Absolute_Path_Traversal	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+
+CWE377_Insecure_Temporary_File	Calling undeclared function X. Old style K&R code?
+CWE377_Insecure_Temporary_File	Call to function X is insecure as it always creates or uses insecure temporary file.  Use X instead
+CWE377_Insecure_Temporary_File	Completely invalid destination for assigns clause *((char *)x_0 + (0 ..)).
+CWE377_Insecure_Temporary_File	Completely invalid destination for assigns clause *((char *)x_1 + (0 ..)).
+CWE377_Insecure_Temporary_File	Completely invalid destination for assigns clause *(s + (..)). Ignoring.
+CWE377_Insecure_Temporary_File	Condition X is always false
+CWE377_Insecure_Temporary_File	Condition X is always true
+CWE377_Insecure_Temporary_File	Same expression on both sides of X.
+
+CWE390_Error_Without_Action	Check when opening files - can an attacker redirect it (via symlinks), force the opening of special file type (e.g., device files), move things around to create a race condition, control its ancestors, or change its contents? (CWE-362).
+CWE390_Error_Without_Action	Condition X is always false
+CWE390_Error_Without_Action	Condition X is always true
+CWE390_Error_Without_Action	Either the condition X is redundant or there is possible null pointer dereference: fileDesc.
+CWE390_Error_Without_Action	non-finite double value.
+CWE390_Error_Without_Action	Same expression on both sides of X.
+CWE390_Error_Without_Action	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+CWE390_Error_Without_Action	Variable X is reassigned a value before the old one has been used.
+
+CWE391_Unchecked_Error_Condition	Condition X is always false
+CWE391_Unchecked_Error_Condition	Condition X is always true
+CWE391_Unchecked_Error_Condition	non-finite double value.
+CWE391_Unchecked_Error_Condition	Same expression on both sides of X.
+CWE391_Unchecked_Error_Condition	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+
+CWE396_Catch_Generic_Exception	Condition X is always false
+CWE396_Catch_Generic_Exception	Condition X is always true
+CWE396_Catch_Generic_Exception	Same expression on both sides of X.
+
+CWE397_Throw_Generic_Exception	Condition X is always false
+CWE397_Throw_Generic_Exception	Condition X is always true
+CWE397_Throw_Generic_Exception	Consecutive return, break, continue, goto or throw statements are unnecessary.
+CWE397_Throw_Generic_Exception	Same expression on both sides of X.
+
+CWE398_Poor_Code_Quality	Condition X is always false
+CWE398_Poor_Code_Quality	Condition X is always true
+CWE398_Poor_Code_Quality	Redundant assignment of X to itself.
+CWE398_Poor_Code_Quality	Redundant code: Found a statement that begins with numeric constant.
+CWE398_Poor_Code_Quality	Same expression on both sides of X.
+CWE398_Poor_Code_Quality	signed overflow.
+
+CWE400_Resource_Exhaustion	Calling undeclared function X. Old style K&R code?
+CWE400_Resource_Exhaustion	Check when opening files - can an attacker redirect it (via symlinks), force the opening of special file type (e.g., device files), move things around to create a race condition, control its ancestors, or change its contents? (CWE-362).
+CWE400_Resource_Exhaustion	Completely invalid destination for assigns
+CWE400_Resource_Exhaustion	Condition X is always false
+CWE400_Resource_Exhaustion	Condition X is always true
+CWE400_Resource_Exhaustion	Does not handle strings that are not \0-terminated; if given one it may perform an over-read (it could cause a crash if unprotected) (CWE-126).
+CWE400_Resource_Exhaustion	Same expression on both sides of X.
+CWE400_Resource_Exhaustion	signed overflow.
+CWE400_Resource_Exhaustion	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+CWE400_Resource_Exhaustion	The scope of the variable X can be reduced.
+CWE400_Resource_Exhaustion	Unless checked, the resulting number can exceed the expected range (CWE-190). If source untrusted, check both minimum and maximum, even if the input had no minus sign (large numbers can roll over into negative number; consider saving to an unsigned value if that is intended).
+
+CWE401_Memory_Leak	Address of stack memory allocated by call to alloca() on line X is still referred to by the global variable X upon returning to the caller.  This will be a dangling reference
+CWE401_Memory_Leak	Address of stack memory allocated by call to alloca() on line X returned to caller
+CWE401_Memory_Leak	Address of stack memory associated with local variable X upon returning to the caller.  This will be a dangling reference
+CWE401_Memory_Leak	all target addresses were invalid. This path is assumed to be dead.
+CWE401_Memory_Leak	Argument to X is the address of the local variable X, which is not memory allocated by X
+CWE401_Memory_Leak	Calling undeclared function X. Old style K&R code?
+CWE401_Memory_Leak	Common realloc mistake: X nulled but not freed upon failure
+CWE401_Memory_Leak	Condition X is always false
+CWE401_Memory_Leak	Condition X is always true
+CWE401_Memory_Leak	Does not check for buffer overflows when copying to destination (CWE-120). Consider using strcpy_s, strncpy, or strlcpy (warning, strncpy is easily misused). Risk is low because the source is a constant string.
+CWE401_Memory_Leak	Memory allocated by alloca() should not be deallocated
+CWE401_Memory_Leak	Memory leak: X
+CWE401_Memory_Leak	out of bounds write.
+CWE401_Memory_Leak	pointer comparison.
+CWE401_Memory_Leak	Potential leak of memory pointed to by X
+CWE401_Memory_Leak	Same expression on both sides of X.
+CWE401_Memory_Leak	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+
+  CWE415_Double_Free	Attempt to free released memory
+  CWE415_Double_Free	Deallocating a deallocated pointer: X
+  CWE415_Double_Free	Memory pointed to by X is freed twice.
+CWE415_Double_Free	Potential leak of memory pointed to by X
+CWE415_Double_Free	Returning/dereferencing X after it is deallocated / released
+CWE415_Double_Free	Use of memory after it is freed
+
+CWE416_Use_After_Free	Access to field X results in a dereference of a null pointer (loaded from variable X)
+CWE416_Use_After_Free	Array access (from variable X) results in a null pointer dereference
+CWE416_Use_After_Free	Dereference of null pointer
+CWE416_Use_After_Free	Dereference of null pointer (loaded from variable X)
+CWE416_Use_After_Free	Memory leak: X
+CWE416_Use_After_Free	out of bounds read.
+CWE416_Use_After_Free	out of bounds write.
+CWE416_Use_After_Free	Potential leak of memory pointed to by X
+  CWE416_Use_After_Free	Use of memory after it is freed
+
+CWE426_Untrusted_Search_Path	Address of stack memory associated with local variable X upon returning to the caller.  This will be a dangling reference
+CWE426_Untrusted_Search_Path	locals X escaping the scope of X through X
+CWE426_Untrusted_Search_Path	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+
+CWE427_Uncontrolled_Search_Path_Element	Address of stack memory associated with local variable X upon returning to the caller.  This will be a dangling reference
+CWE427_Uncontrolled_Search_Path_Element	Check when opening files - can an attacker redirect it (via symlinks), force the opening of special file type (e.g., device files), move things around to create a race condition, control its ancestors, or change its contents? (CWE-362).
+CWE427_Uncontrolled_Search_Path_Element	Completely invalid destination for assigns
+CWE427_Uncontrolled_Search_Path_Element	Condition X is always false
+CWE427_Uncontrolled_Search_Path_Element	Condition X is always true
+CWE427_Uncontrolled_Search_Path_Element	Does not check for buffer overflows when concatenating to destination (CWE-120). Consider using strcat_s, strncat, or strlcat (warning, strncat is easily misused).
+CWE427_Uncontrolled_Search_Path_Element	Does not handle strings that are not \0-terminated; if given one it may perform an over-read (it could cause a crash if unprotected) (CWE-126).
+CWE427_Uncontrolled_Search_Path_Element	Easily used incorrectly (e.g., incorrectly computing the correct maximum size to add) (CWE-120). Consider strcat_s, strlcat, or automatically resizing strings.
+CWE427_Uncontrolled_Search_Path_Element	locals X escaping the scope of X through X
+CWE427_Uncontrolled_Search_Path_Element	out of bounds read.
+CWE427_Uncontrolled_Search_Path_Element	out of bounds write.
+CWE427_Uncontrolled_Search_Path_Element	pointer comparison.
+CWE427_Uncontrolled_Search_Path_Element	Same expression on both sides of X.
+CWE427_Uncontrolled_Search_Path_Element	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+CWE427_Uncontrolled_Search_Path_Element	The scope of the variable X can be reduced.
+CWE427_Uncontrolled_Search_Path_Element	 Variable X is assigned a value that is never used.
+
+CWE440_Expected_Behavior_Violation	Exception thrown in function declared not to throw exceptions.
+
+CWE457_Use_of_Uninitialized_Variable	accessing uninitialized left-value.
+CWE457_Use_of_Uninitialized_Variable	all target addresses were invalid. This path is assumed to be dead.
+CWE457_Use_of_Uninitialized_Variable	Calling undeclared function X. Old style K&R code?
+CWE457_Use_of_Uninitialized_Variable	Condition X is always false
+CWE457_Use_of_Uninitialized_Variable	Condition X is always true
+CWE457_Use_of_Uninitialized_Variable	Dereference of undefined pointer value
+CWE457_Use_of_Uninitialized_Variable	Function call argument is an uninitialized value
+CWE457_Use_of_Uninitialized_Variable	Memory leak: X
+CWE457_Use_of_Uninitialized_Variable	non-finite double value.
+CWE457_Use_of_Uninitialized_Variable	out of bounds read.
+CWE457_Use_of_Uninitialized_Variable	out of bounds write.
+CWE457_Use_of_Uninitialized_Variable	Potential leak of memory pointed to by X
+CWE457_Use_of_Uninitialized_Variable	Same expression on both sides of X.
+CWE457_Use_of_Uninitialized_Variable	The scope of the variable X can be reduced.
+CWE457_Use_of_Uninitialized_Variable	Uninitialized variable: X
+CWE457_Use_of_Uninitialized_Variable	Value stored to X during its initialization is never read
+CWE457_Use_of_Uninitialized_Variable	Variable X is not assigned a value.
+CWE457_Use_of_Uninitialized_Variable	Variable X is reassigned a value before the old one has been used.
+
+CWE459_Incomplete_Cleanup	Calling undeclared function X. Old style K&R code?
+CWE459_Incomplete_Cleanup	Call to function X is insecure as it always creates or uses insecure temporary file.  Use X instead
+CWE459_Incomplete_Cleanup	Condition X is always false
+CWE459_Incomplete_Cleanup	Condition X is always true
+CWE459_Incomplete_Cleanup	Same expression on both sides of X.
+CWE459_Incomplete_Cleanup	The scope of the variable X can be reduced.
+
+CWE464_Addition_of_Data_Structure_Sentinel	Check buffer boundaries if used in a loop including recursive loops (CWE-120, CWE-20).
+CWE464_Addition_of_Data_Structure_Sentinel	Condition X is always false
+CWE464_Addition_of_Data_Structure_Sentinel	Condition X is always true
+CWE464_Addition_of_Data_Structure_Sentinel	Same expression on both sides of X.
+CWE464_Addition_of_Data_Structure_Sentinel	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+CWE464_Addition_of_Data_Structure_Sentinel	The scope of the variable X can be reduced.
+CWE464_Addition_of_Data_Structure_Sentinel	Unless checked, the resulting number can exceed the expected range (CWE-190). If source untrusted, check both minimum and maximum, even if the input had no minus sign (large numbers can roll over into negative number; consider saving to an unsigned value if that is intended).
+CWE464_Addition_of_Data_Structure_Sentinel	Value stored to X during its initialization is never read
+CWE464_Addition_of_Data_Structure_Sentinel	Value stored to X is never read
+CWE464_Addition_of_Data_Structure_Sentinel	 Variable X is assigned a value that is never used.
+CWE464_Addition_of_Data_Structure_Sentinel	Variable X is reassigned a value before the old one has been used.
+
+CWE467_Use_of_sizeof_on_Pointer_Type	Condition X is always false
+CWE467_Use_of_sizeof_on_Pointer_Type	Condition X is always true
+CWE467_Use_of_sizeof_on_Pointer_Type	out of bounds write.
+CWE467_Use_of_sizeof_on_Pointer_Type	Result of X is converted to a pointer of type X, which is incompatible with sizeof operand type X
+CWE467_Use_of_sizeof_on_Pointer_Type	Same expression on both sides of X.
+CWE467_Use_of_sizeof_on_Pointer_Type	Size of pointer X used instead of size of its data.
+
+CWE468_Incorrect_Pointer_Scaling	Assigned value is garbage or undefined
+CWE468_Incorrect_Pointer_Scaling	Condition X is always false
+CWE468_Incorrect_Pointer_Scaling	Condition X is always true
+CWE468_Incorrect_Pointer_Scaling	Same expression on both sides of X.
+
+CWE469_Use_of_Pointer_Subtraction_to_Determine_Size	Condition X is always false
+CWE469_Use_of_Pointer_Subtraction_to_Determine_Size	Condition X is always true
+CWE469_Use_of_Pointer_Subtraction_to_Determine_Size	pointer comparison.
+CWE469_Use_of_Pointer_Subtraction_to_Determine_Size	pointer subtraction.
+CWE469_Use_of_Pointer_Subtraction_to_Determine_Size	Same expression on both sides of X.
+CWE469_Use_of_Pointer_Subtraction_to_Determine_Size	signed overflow.
+
+CWE475_Undefined_Behavior_for_Input_to_API	Condition X is always false
+CWE475_Undefined_Behavior_for_Input_to_API	Condition X is always true
+CWE475_Undefined_Behavior_for_Input_to_API	Does not check for buffer overflows when copying to destination (CWE-120). Consider using strcpy_s, strncpy, or strlcpy (warning, strncpy is easily misused). Risk is low because the source is a constant string.
+CWE475_Undefined_Behavior_for_Input_to_API	Does not check for buffer overflows when copying to destination (CWE-120). Make sure destination can always hold the source data.
+CWE475_Undefined_Behavior_for_Input_to_API	Same expression on both sides of X.
+CWE475_Undefined_Behavior_for_Input_to_API	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+
+CWE476_NULL_Pointer_Dereference	accessing left-value that contains escaping addresses.
+CWE476_NULL_Pointer_Dereference	accessing uninitialized left-value.
+CWE476_NULL_Pointer_Dereference	Access to field X results in a dereference of a null pointer (loaded from variable X)
+CWE476_NULL_Pointer_Dereference	Array access (from variable X) results in a null pointer dereference
+CWE476_NULL_Pointer_Dereference	Assigned value is garbage or undefined
+CWE476_NULL_Pointer_Dereference	Condition X is always false
+CWE476_NULL_Pointer_Dereference	Condition X is always true
+CWE476_NULL_Pointer_Dereference	Dead pointer usage. Pointer X is dead if it has assigned X at line X.
+CWE476_NULL_Pointer_Dereference	Dereference of null pointer (loaded from variable X)
+CWE476_NULL_Pointer_Dereference	Dereference of undefined pointer value
+CWE476_NULL_Pointer_Dereference	Either the condition X is redundant or there is possible null pointer dereference: intPointer.
+CWE476_NULL_Pointer_Dereference	locals X escaping the scope of X through X
+CWE476_NULL_Pointer_Dereference	Null pointer dereference: X
+CWE476_NULL_Pointer_Dereference	out of bounds read.
+CWE476_NULL_Pointer_Dereference	out of bounds write.
+CWE476_NULL_Pointer_Dereference	Possible null pointer dereference: X
+CWE476_NULL_Pointer_Dereference	Potential leak of memory pointed to by X
+CWE476_NULL_Pointer_Dereference	Same expression on both sides of X.
+CWE476_NULL_Pointer_Dereference	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+CWE476_NULL_Pointer_Dereference	The left operand of X is a garbage value
+CWE476_NULL_Pointer_Dereference	Value stored to X during its initialization is never read
+CWE476_NULL_Pointer_Dereference	Value stored to X is never read
+CWE476_NULL_Pointer_Dereference	 Variable X is assigned a value that is never used.
+CWE476_NULL_Pointer_Dereference	Variable X is not assigned a value.
+CWE476_NULL_Pointer_Dereference	Variable X is reassigned a value before the old one has been used.
+
+CWE478_Missing_Default_Case_in_Switch	Condition X is always false
+CWE478_Missing_Default_Case_in_Switch	Condition X is always true
+CWE478_Missing_Default_Case_in_Switch	Same expression on both sides of X.
+
+CWE479_Signal_Handler_Use_of_Non_Reentrant_Function	Condition X is always false
+CWE479_Signal_Handler_Use_of_Non_Reentrant_Function	Condition X is always true
+CWE479_Signal_Handler_Use_of_Non_Reentrant_Function	Same expression on both sides of X.
+
+CWE480_Use_of_Incorrect_Operator	Condition X is always false
+CWE480_Use_of_Incorrect_Operator	Condition X is always true
+CWE480_Use_of_Incorrect_Operator	Same expression on both sides of X.
+
+CWE481_Assigning_Instead_of_Comparing	Condition X is always false
+CWE481_Assigning_Instead_of_Comparing	Condition X is always true
+CWE481_Assigning_Instead_of_Comparing	Same expression on both sides of X.
+CWE481_Assigning_Instead_of_Comparing	Value stored to X during its initialization is never read
+
+CWE482_Comparing_Instead_of_Assigning	Condition X is always false
+CWE482_Comparing_Instead_of_Assigning	Condition X is always true
+CWE482_Comparing_Instead_of_Assigning	Same expression on both sides of X.
+
+CWE483_Incorrect_Block_Delimitation	Condition X is always false
+CWE483_Incorrect_Block_Delimitation	Condition X is always true
+CWE483_Incorrect_Block_Delimitation	Same expression on both sides of X.
+CWE483_Incorrect_Block_Delimitation	Value stored to X is never read
+
+CWE484_Omitted_Break_Statement_in_Switch	Condition X is always false
+CWE484_Omitted_Break_Statement_in_Switch	Condition X is always true
+CWE484_Omitted_Break_Statement_in_Switch	Same expression on both sides of X.
+
+CWE506_Embedded_Malicious_Code	Check when opening files - can an attacker redirect it (via symlinks), force the opening of special file type (e.g., device files), move things around to create a race condition, control its ancestors, or change its contents? (CWE-362).
+CWE506_Embedded_Malicious_Code	Completely invalid destination for assigns
+CWE506_Embedded_Malicious_Code	Condition X is always true
+CWE506_Embedded_Malicious_Code	Does not handle strings that are not \0-terminated; if given one it may perform an over-read (it could cause a crash if unprotected) (CWE-126).
+CWE506_Embedded_Malicious_Code	Same expression on both sides of X.
+CWE506_Embedded_Malicious_Code	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+
+CWE510_Trapdoor	Completely invalid destination for assigns
+CWE510_Trapdoor	Condition X is always false
+CWE510_Trapdoor	Condition X is always true
+CWE510_Trapdoor	Does not handle strings that are not \0-terminated; if given one it may perform an over-read (it could cause a crash if unprotected) (CWE-126).
+CWE510_Trapdoor	Same expression on both sides of X.
+CWE510_Trapdoor	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+
+CWE511_Logic_Time_Bomb	Condition X is always false
+CWE511_Logic_Time_Bomb	Condition X is always true
+CWE511_Logic_Time_Bomb	Same expression on both sides of X.
+CWE511_Logic_Time_Bomb	signed overflow.
+CWE511_Logic_Time_Bomb	This function is not sufficiently random for security-related functions such as key and nonce creation (CWE-327). use a more secure technique for acquiring random values.
+
+CWE526_Info_Exposure_Environment_Variables	Condition X is always false
+CWE526_Info_Exposure_Environment_Variables	Condition X is always true
+CWE526_Info_Exposure_Environment_Variables	Environment variables are untrustable input if they can be set by an attacker. They can have any content and length, and the same variable can be set more than once (CWE-807, CWE-20). Check environment variables carefully before using them.
+CWE526_Info_Exposure_Environment_Variables	Same expression on both sides of X.
+
+CWE546_Suspicious_Comment	Condition X is always false
+CWE546_Suspicious_Comment	Condition X is always true
+CWE546_Suspicious_Comment	Same expression on both sides of X.
+
+CWE562_Return_of_Stack_Variable_Address	accessing left-value that contains escaping addresses.
+
+CWE563_Unused_Variable	accessing uninitialized left-value.
+CWE563_Unused_Variable	Assigned value is garbage or undefined
+CWE563_Unused_Variable	Condition X is always false
+CWE563_Unused_Variable	Condition X is always true
+CWE563_Unused_Variable	Function call argument is an uninitialized value
+CWE563_Unused_Variable	Passed-by-value struct argument contains uninitialized data (e.g., field: X)
+CWE563_Unused_Variable	Same expression on both sides of X.
+CWE563_Unused_Variable	The scope of the variable X can be reduced.
+CWE563_Unused_Variable	Uninitialized variable: X
+CWE563_Unused_Variable	Unused variable: X
+CWE563_Unused_Variable	Value stored to X during its initialization is never read
+CWE563_Unused_Variable	Value stored to X is never read
+CWE563_Unused_Variable	 Variable X is assigned a value that is never used.
+CWE563_Unused_Variable	Variable X is not assigned a value.
+CWE563_Unused_Variable	Variable X is reassigned a value before the old one has been used.
+
+CWE570_Expression_Always_False	Checking if unsigned variable X is less than zero.
+  CWE570_Expression_Always_False	Condition X is always false
+CWE570_Expression_Always_False	Unnecessary comparison of static strings.
+
+  CWE571_Expression_Always_True	Condition X is always true
+CWE571_Expression_Always_True	Same expression on both sides of X.
+CWE571_Expression_Always_True	Unnecessary comparison of static strings.
+CWE571_Expression_Always_True	Unsigned variable X can't be negative so it is unnecessary to test it.
+
+CWE587_Assignment_of_Fixed_Address_to_Pointer	Condition X is always false
+CWE587_Assignment_of_Fixed_Address_to_Pointer	Condition X is always true
+CWE587_Assignment_of_Fixed_Address_to_Pointer	out of bounds read.
+CWE587_Assignment_of_Fixed_Address_to_Pointer	Same expression on both sides of X.
+
+CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer	accessing uninitialized left-value.
+CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer	Assigned value is garbage or undefined
+CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer	Condition X is always false
+CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer	Condition X is always true
+CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer	Dereference of undefined pointer value
+CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer	Function call argument is an uninitialized value
+CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer	locals X escaping the scope of X through X
+CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer	Same expression on both sides of X.
+CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer	Uninitialized variable: X
+CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer	Value stored to X during its initialization is never read
+CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer	Value stored to X is never read
+CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer	 Variable X is assigned a value that is never used.
+CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer	Variable X is not assigned a value.
+CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer	Variable X is reassigned a value before the old one has been used.
+
+CWE590_Free_Memory_Not_on_Heap	accessing left-value that contains escaping addresses.
+CWE590_Free_Memory_Not_on_Heap	Access to field X results in a dereference of a null pointer (loaded from variable X)
+CWE590_Free_Memory_Not_on_Heap	all target addresses were invalid. This path is assumed to be dead.
+  CWE590_Free_Memory_Not_on_Heap	Argument to free() is the address of the local variable X, which is not memory allocated by malloc()
+  CWE590_Free_Memory_Not_on_Heap	Argument to free() is the address of the static variable X, which is not memory allocated by malloc()
+CWE590_Free_Memory_Not_on_Heap	Argument to X is the address of the local variable X, which is not memory allocated by X
+CWE590_Free_Memory_Not_on_Heap	Argument to X is the address of the static variable X, which is not memory allocated by X
+CWE590_Free_Memory_Not_on_Heap	Array access (from variable X) results in a null pointer dereference
+CWE590_Free_Memory_Not_on_Heap	Dead pointer usage. Pointer X is dead if it has assigned X at line X.
+CWE590_Free_Memory_Not_on_Heap	Deallocation of an auto-variable results in undefined behaviour.
+CWE590_Free_Memory_Not_on_Heap	Dereference of null pointer
+CWE590_Free_Memory_Not_on_Heap	Dereference of null pointer (loaded from variable X)
+CWE590_Free_Memory_Not_on_Heap	locals X escaping the scope of X through X
+  CWE590_Free_Memory_Not_on_Heap	Memory allocated by alloca() should not be deallocated
+CWE590_Free_Memory_Not_on_Heap	out of bounds read.
+CWE590_Free_Memory_Not_on_Heap	out of bounds write.
+CWE590_Free_Memory_Not_on_Heap	Possible null pointer dereference: X
+CWE590_Free_Memory_Not_on_Heap	Potential leak of memory pointed to by X
+CWE590_Free_Memory_Not_on_Heap	Value stored to X during its initialization is never read
+CWE590_Free_Memory_Not_on_Heap	Value stored to X is never read
+CWE590_Free_Memory_Not_on_Heap	 Variable X is assigned a value that is never used.
+
+CWE606_Unchecked_Loop_Condition	accessing uninitialized left-value.
+CWE606_Unchecked_Loop_Condition	Address of stack memory associated with local variable X upon returning to the caller.  This will be a dangling reference
+CWE606_Unchecked_Loop_Condition	Check when opening files - can an attacker redirect it (via symlinks), force the opening of special file type (e.g., device files), move things around to create a race condition, control its ancestors, or change its contents? (CWE-362).
+CWE606_Unchecked_Loop_Condition	Completely invalid destination for assigns
+CWE606_Unchecked_Loop_Condition	Condition X is always false
+CWE606_Unchecked_Loop_Condition	Condition X is always true
+CWE606_Unchecked_Loop_Condition	Does not check for buffer overflows when copying to destination (CWE-120). Consider using strcpy_s, strncpy, or strlcpy (warning, strncpy is easily misused). Risk is low because the source is a constant string.
+CWE606_Unchecked_Loop_Condition	Does not handle strings that are not \0-terminated; if given one it may perform an over-read (it could cause a crash if unprotected) (CWE-126).
+CWE606_Unchecked_Loop_Condition	Easily used incorrectly (e.g., incorrectly computing the correct maximum size to add) (CWE-120). Consider strcat_s, strlcat, or automatically resizing strings.
+CWE606_Unchecked_Loop_Condition	locals X escaping the scope of X through X
+CWE606_Unchecked_Loop_Condition	out of bounds read.
+CWE606_Unchecked_Loop_Condition	out of bounds write.
+CWE606_Unchecked_Loop_Condition	pointer comparison.
+CWE606_Unchecked_Loop_Condition	Same expression on both sides of X.
+CWE606_Unchecked_Loop_Condition	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+CWE606_Unchecked_Loop_Condition	The scope of the variable X can be reduced.
+CWE606_Unchecked_Loop_Condition	 Variable X is assigned a value that is never used.
+
+CWE617_Reachable_Assertion	Completely invalid destination for assigns
+CWE617_Reachable_Assertion	Condition X is always false
+CWE617_Reachable_Assertion	Condition X is always true
+CWE617_Reachable_Assertion	Same expression on both sides of X.
+CWE617_Reachable_Assertion	signed overflow.
+CWE617_Reachable_Assertion	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+CWE617_Reachable_Assertion	The scope of the variable X can be reduced.
+CWE617_Reachable_Assertion	Unless checked, the resulting number can exceed the expected range (CWE-190). If source untrusted, check both minimum and maximum, even if the input had no minus sign (large numbers can roll over into negative number; consider saving to an unsigned value if that is intended).
+CWE617_Reachable_Assertion	Value stored to X during its initialization is never read
+CWE617_Reachable_Assertion	Value stored to X is never read
+CWE617_Reachable_Assertion	 Variable X is assigned a value that is never used.
+CWE617_Reachable_Assertion	Variable X is reassigned a value before the old one has been used.
+
+CWE665_Improper_Initialization	Condition X is always false
+CWE665_Improper_Initialization	Condition X is always true
+CWE665_Improper_Initialization	Does not check for buffer overflows when concatenating to destination (CWE-120). Consider using strcat_s, strncat, or strlcat (warning, strncat is easily misused).
+CWE665_Improper_Initialization	Does not handle strings that are not \0-terminated; if given one it may perform an over-read (it could cause a crash if unprotected) (CWE-126).
+CWE665_Improper_Initialization	Easily used incorrectly (e.g., incorrectly computing the correct maximum size to add) (CWE-120). Consider strcat_s, strlcat, or automatically resizing strings.
+CWE665_Improper_Initialization	locals X escaping the scope of X through X
+CWE665_Improper_Initialization	Same expression on both sides of X.
+CWE665_Improper_Initialization	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+CWE665_Improper_Initialization	Unused variable: X
+CWE665_Improper_Initialization	Value stored to X is never read
+CWE665_Improper_Initialization	 Variable X is assigned a value that is never used.
+
+CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime	accessing out of bounds index.
+CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime	Completely invalid destination for assigns
+CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime	Condition X is always false
+CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime	Condition X is always true
+CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime	Does not handle strings that are not \0-terminated; if given one it may perform an over-read (it could cause a crash if unprotected) (CWE-126).
+CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime	out of bounds write.
+CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime	pointer comparison.
+CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime	Same expression on both sides of X.
+CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+CWE666_Operation_on_Resource_in_Wrong_Phase_of_Lifetime	The scope of the variable X can be reduced.
+
+CWE667_Improper_Locking	Completely invalid destination for assigns clause *lock. Ignoring.
+CWE667_Improper_Locking	Condition X is always false
+CWE667_Improper_Locking	Condition X is always true
+CWE667_Improper_Locking	Same expression on both sides of X.
+
+CWE672_Operation_on_Resource_After_Expiration_or_Release	Condition X is always false
+CWE672_Operation_on_Resource_After_Expiration_or_Release	Condition X is always true
+CWE672_Operation_on_Resource_After_Expiration_or_Release	Function parameter X should be passed by reference.
+CWE672_Operation_on_Resource_After_Expiration_or_Release	Prefer prefix ++/-- operators for non-primitive types.
+CWE672_Operation_on_Resource_After_Expiration_or_Release	Same expression on both sides of X.
+CWE672_Operation_on_Resource_After_Expiration_or_Release	 Variable X is assigned in constructor body. Consider performing initialization in initialization list.
+
+CWE675_Duplicate_Operations_on_Resource	Check when opening files - can an attacker redirect it (via symlinks), force the opening of special file type (e.g., device files), move things around to create a race condition, control its ancestors, or change its contents? (CWE-362).
+CWE675_Duplicate_Operations_on_Resource	Condition X is always false
+CWE675_Duplicate_Operations_on_Resource	Condition X is always true
+CWE675_Duplicate_Operations_on_Resource	Deallocating a deallocated pointer: X
+CWE675_Duplicate_Operations_on_Resource	Resource handle X freed twice.
+CWE675_Duplicate_Operations_on_Resource	Returning/dereferencing X after it is deallocated / released
+CWE675_Duplicate_Operations_on_Resource	Same expression on both sides of X.
+CWE675_Duplicate_Operations_on_Resource	The scope of the variable X can be reduced.
+CWE675_Duplicate_Operations_on_Resource	Used file that is not opened.
+CWE675_Duplicate_Operations_on_Resource	Value stored to X during its initialization is never read
+CWE675_Duplicate_Operations_on_Resource	Value stored to X is never read
+CWE675_Duplicate_Operations_on_Resource	 Variable X is assigned a value that is never used.
+CWE675_Duplicate_Operations_on_Resource	Variable X is reassigned a value before the old one has been used.
+
+  CWE676_Use_of_Potentially_Dangerous_Function	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+
+CWE680_Integer_Overflow_to_Buffer_Overflow	Completely invalid destination for assigns
+CWE680_Integer_Overflow_to_Buffer_Overflow	Function call argument is an uninitialized value
+  CWE680_Integer_Overflow_to_Buffer_Overflow	Invalid malloc() argument nr 1. The value is -4 but the valid values are X.
+  CWE680_Integer_Overflow_to_Buffer_Overflow	Memory allocation size is negative.
+CWE680_Integer_Overflow_to_Buffer_Overflow	out of bounds read.
+CWE680_Integer_Overflow_to_Buffer_Overflow	out of bounds write.
+  CWE680_Integer_Overflow_to_Buffer_Overflow	signed overflow.
+CWE680_Integer_Overflow_to_Buffer_Overflow	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+  CWE680_Integer_Overflow_to_Buffer_Overflow	Suspicious code: sign conversion of data in calculation, even though data can have a negative value
+  CWE680_Integer_Overflow_to_Buffer_Overflow	Unless checked, the resulting number can exceed the expected range (CWE-190). If source untrusted, check both minimum and maximum, even if the input had no minus sign (large numbers can roll over into negative number; consider saving to an unsigned value if that is intended).
+
+CWE681_Incorrect_Conversion_Between_Numeric_Types	non-finite double value.
+CWE681_Incorrect_Conversion_Between_Numeric_Types	non-finite float value.
+  CWE681_Incorrect_Conversion_Between_Numeric_Types	overflow in conversion from floating-point to integer.
+
+  CWE685_Function_Call_With_Incorrect_Number_of_Arguments	sprintf format string requires 2 parameters but only 1 is given.
+
+CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument	Does not check for buffer overflows (CWE-120). Use sprintf_s, snprintf, or vsnprintf.
+CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument	Does not check for buffer overflows (CWE-120). Use sprintf_s, snprintf, or vsnprintf. Risk is low because the source has a constant maximum length.
+  CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument	%s in format string (no. 1) requires X but the argument type is X.
+
+CWE690_NULL_Deref_From_Return	Check when opening files - can an attacker redirect it (via symlinks), force the opening of special file type (e.g., device files), move things around to create a race condition, control its ancestors, or change its contents? (CWE-362).
+CWE690_NULL_Deref_From_Return	Common realloc mistake: X nulled but not freed upon failure
+CWE690_NULL_Deref_From_Return	Does not check for buffer overflows when copying to destination (CWE-120). Consider using strcpy_s, strncpy, or strlcpy (warning, strncpy is easily misused). Risk is low because the source is a constant string.
+CWE690_NULL_Deref_From_Return	Memory leak: X
+CWE690_NULL_Deref_From_Return	out of bounds write.
+CWE690_NULL_Deref_From_Return	Potential leak of memory pointed to by X
+CWE690_NULL_Deref_From_Return	Resource leak: X
+
+  CWE758_Undefined_Behavior	all target addresses were invalid. This path is assumed to be dead.
+  CWE758_Undefined_Behavior	Assigned value is garbage or undefined
+  CWE758_Undefined_Behavior	Function call argument is an uninitialized value
+CWE758_Undefined_Behavior	Memory is allocated but not initialized: X
+CWE758_Undefined_Behavior	non-finite double value.
+CWE758_Undefined_Behavior	out of bounds read.
+CWE758_Undefined_Behavior	out of bounds write.
+CWE758_Undefined_Behavior	Potential leak of memory pointed to by X
+
+  CWE761_Free_Pointer_Not_at_Start_of_Buffer	Argument to free() is offset by X byte from the start of memory allocated by malloc()
+  CWE761_Free_Pointer_Not_at_Start_of_Buffer	Argument to free() is offset by X bytes from the start of memory allocated by malloc()
+CWE761_Free_Pointer_Not_at_Start_of_Buffer	Completely invalid destination for assigns
+CWE761_Free_Pointer_Not_at_Start_of_Buffer	Memory leak: X
+CWE761_Free_Pointer_Not_at_Start_of_Buffer	Potential leak of memory pointed to by X
+CWE761_Free_Pointer_Not_at_Start_of_Buffer	The left operand of X is a garbage value
+
+  CWE762_Mismatched_Memory_Management_Routines	Memory allocated by calloc() should be deallocated by free(), not X
+  CWE762_Mismatched_Memory_Management_Routines	Memory allocated by malloc() should be deallocated by free(), not X
+  CWE762_Mismatched_Memory_Management_Routines	Memory allocated by realloc() should be deallocated by free(), not X
+  CWE762_Mismatched_Memory_Management_Routines	Memory allocated by strdup() should be deallocated by free(), not X
+  CWE762_Mismatched_Memory_Management_Routines	Memory allocated by X should be deallocated by X, not free()
+  CWE762_Mismatched_Memory_Management_Routines	Memory allocated by X should be deallocated by X, not X
+  CWE762_Mismatched_Memory_Management_Routines	Mismatching allocation and deallocation: X
+CWE762_Mismatched_Memory_Management_Routines	Potential leak of memory pointed to by X
+
+CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle	Check when opening files - can an attacker redirect it (via symlinks), force the opening of special file type (e.g., device files), move things around to create a race condition, control its ancestors, or change its contents? (CWE-362).
+CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle	Resource leak: X
+CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle	Value stored to X during its initialization is never read
+CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle	Value stored to X is never read
+CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle	 Variable X is assigned a value that is never used.
+CWE773_Missing_Reference_to_Active_File_Descriptor_or_Handle	Variable X is reassigned a value before the old one has been used.
+
+CWE775_Missing_Release_of_File_Descriptor_or_Handle	Check when opening files - can an attacker redirect it (via symlinks), force the opening of special file type (e.g., device files), move things around to create a race condition, control its ancestors, or change its contents? (CWE-362).
+  CWE775_Missing_Release_of_File_Descriptor_or_Handle	Resource leak: X
+
+CWE789_Uncontrolled_Mem_Alloc	Completely invalid destination for assigns
+CWE789_Uncontrolled_Mem_Alloc	Completely invalid destination for assigns clause *endptr. Ignoring.
+CWE789_Uncontrolled_Mem_Alloc	Does not check for buffer overflows when copying to destination (CWE-120). Consider using strcpy_s, strncpy, or strlcpy (warning, strncpy is easily misused).
+CWE789_Uncontrolled_Mem_Alloc	Does not handle strings that are not \0-terminated; if given one it may perform an over-read (it could cause a crash if unprotected) (CWE-126).
+CWE789_Uncontrolled_Mem_Alloc	Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
+
+CWE832_Unlock_of_Resource_That_is_Not_Locked	Completely invalid destination for assigns clause *lock. Ignoring.
+
+CWE843_Type_Confusion	accessing left-value that contains escaping addresses.
+CWE843_Type_Confusion	Dead pointer usage. Pointer X is dead if it has assigned X at line X.
+CWE843_Type_Confusion	Dereference of null pointer
+CWE843_Type_Confusion	locals X escaping the scope of X through X
+CWE843_Type_Confusion	out of bounds read.
+CWE843_Type_Confusion	Possible null pointer dereference: X
