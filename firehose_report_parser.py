@@ -7,7 +7,9 @@ firehose format and to parse the firehose xml files to:
 """
 
 import os
+import re
 import glob
+from collections import defaultdict
 from firehose.model import Analysis
 from firehose.parsers import frama_c
 from firehose.parsers import cppcheck
@@ -59,54 +61,71 @@ def get_reports():
     return results
 
 
-# TODO: rename this function and returning list.
-def get_function_scopes():
-    function_scopes = {}
+def get_line_labels():
+    """Return a list to check if a line is contained in a good function, in a
+    bad function, or neither, based on Juliet documentation.
+
+    Use the returned list as
+    returned_list[file_name_string][line_number_string]. It will return 'bad'
+    if the line is in the bad scope of a test case, 'good' if teh line is in
+    the good scope of the test case, and the key will not be defined if
+    conclusions about the line are not advised by Juliet docs.
+    """
+    line_labels = {}
+    # get cpp classes which may not have the right string in the function names
+    with open('cpp_testcases.list', 'r') as cpp_testcases:
+        for line in cpp_testcases:
+            file_name = os.path.basename(line.split('\n')[0])
+            if 'bad' in file_name:
+                line_labels[file_name] = defaultdict(lambda: 'bad')
+            elif 'good' in file_name:
+                line_labels[file_name] = defaultdict(lambda: 'good')
+
     with open('testcase_functions_scope.list', 'r') as scope_list:
         for line in scope_list:
             absolute_path, function_name, start, end = line.split(':')
             file_name = os.path.basename(absolute_path)
-            if file_name not in function_scopes:
-                function_scopes[file_name] = {}
+            if file_name not in line_labels:
+                line_labels[file_name] = {}
             label = ''
             # what if cpp classes and functions overlap here?
-            if 'bad.cpp' in file_name:
-                label = 'bad'
-            elif 'good.cpp' in file_name:
-                label = 'good'
-            elif 'bad' in function_name:
+            if 'bad' in function_name:
                 label = 'bad'
             elif 'good' in function_name:
                 label = 'good'
             else:
-                # we do not want to check warnings in other functions
-                # as pointed out by Juliet's documentation
-                continue
-            for i in range(start, end + 1):
-                function_scopes[file_name][i] = label
-    return function_scopes
+                continue  # Discard, as pointed out by Juliet documentation
+            for i in range(int(start), int(end) + 1):
+                line_labels[file_name][i] = label
+    return line_labels
 
 
 def label_reports(reports):
-    """
-    This function labels each warning as true or false positive. Warnings whose
-    label is not possible to determine according to Juliet documentation, are
-    removed from the output list
+    """This function labels each warning as true or false positive. Warnings
+    whose label is not possible to determine according to Juliet documentation,
+    are removed from the output list.
 
     in: list with Analysis objects from Juliet analyses
     out: list with Analysis objects labeled as true or false positives.
     """
-    # TODO: create hash with filenames, containing each function name, start and end.
-    # maybe we could have sth like: function['CWEZZZ_foo_01.c'][34] = 'function_name'
-    # this could be achieved with a loop for each line of the function names file
-    # where it just write the name of each functions in the right list's specifit indexes
+    # TODO: Label warnings coming from classes here
+    line_labels = get_line_labels()
     for report in reports:
         for warning in report.results:
-            file_name = warning.location.file.givenpath
+            if not warning.location:
+                # print(warning)
+                continue # discard. TODO: verify what is being lost here
+            file_name = os.path.basename(warning.location.file.givenpath)
             file_line = warning.location.point.line
+            if (not re.search('^CWE[^.]*\.(c|cpp)$', file_name)) or (file_line not in line_labels[file_name]):
+                continue  # Discard non labelable warning
+
             message = warning.message.text
-            cwe = warning.cwe
-            severity = warning.severity
+            # cwe = warning.cwe
+            # severity = warning.severity
+
+            testcase_cwe = file_name.split('__')[0]
+            print("%s\t%s" % (testcase_cwe, message))
 
 
 if __name__ == "__main__":
