@@ -143,8 +143,15 @@ there will often exist a similar case with a false positive in the test case
 which we will label as false positive. If we accept strings with related flaws
 for a test case, where this related flaw may show up in the fix for that CWE,
 we will assign wrong labels to some warnings, hence, it is better to not include
-those warnings at all.
-`TODO: specify files used for the manual inspection`
+those warnings at all. When in doubt, we would not consider a warning category
+for the test cases.
+
+The file used as a base for the manual inspections in this repository is
+`raw_cwe_versus_warning_msg.txt`.  Note that although the
+`firehose_report_parser.py` file does output this raw list, the one in the
+repository was sorted and repeated entries were already removed. One can do
+that with `cat raw_cwe_versus_warning_msg.txt | sort -u`.
+TODO: SORT THE raw file automatically (in the make file?)
 
 Note that for the cpp cases, we can just check the bad|good string in the file
 names (not just ending in good.cpp or bad.cpp, since there may exist suffixes
