@@ -449,7 +449,7 @@ if __name__ == "__main__":
         labeled_reports = get_labeled_reports()
         print_stats(reports, "Number of warnings triggered")
         print()
-        print_stats(labeled_reports, "Number of warnings labeled")
+        print_stats(labeled_reports, "Number of warnings labeled", True)
         sys.exit(0)
 
     # if reports are not converted to firehose yet, convert
