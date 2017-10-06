@@ -446,7 +446,7 @@ def print_stats(reports, header, labels=False):
 
 
 if __name__ == "__main__":
-    if sys.argv[1] == 'stats':
+    if len(sys.argv) > 1 and sys.argv[1] == 'stats':
         if not os.path.exists('reports/firehose/labeled_reports'):
             sys.exit(1)
         reports = get_reports()
