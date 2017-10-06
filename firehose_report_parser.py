@@ -155,14 +155,8 @@ def label_warnings(reports):
 
 
 def warning_match_cwe(cwe, message):
-    regexes = {}
-    if cwe == 'CWEZZZ_FOO':
-        matching_regex = re.compile('pattern1|pattern2')
-    elif cwe == 'CWEZZY_BAR':
-        matching_regex = re.compile('pattern1|pattern2')
-###############
-###############
-    elif cwe == 'CWE121_Stack_Based_Buffer_Overflow':
+    matching_regex = None
+    if cwe == 'CWE121_Stack_Based_Buffer_Overflow':
         matching_regex = re.compile(
                 'accessing out of bounds index'
                 '|Assigned value is garbage or undefined'
@@ -194,7 +188,7 @@ def warning_match_cwe(cwe, message):
         )
     elif cwe == 'CWE124_Buffer_Underwrite':
         matching_regex = re.compile(
-                'Array index -5 is out of bounds'
+                'Array index.*is out of bounds'
                 '|Assigned value is garbage or undefined'
                 '|Does not check for buffer overflows when copying to destination'
                 '|Easily used incorrectly.*terminate or check for invalid pointers'
@@ -214,7 +208,7 @@ def warning_match_cwe(cwe, message):
     elif cwe == 'CWE127_Buffer_Underread':
         matching_regex = re.compile(
                 'accessing out of bounds index'
-                '|Array index -5 is out of bounds'
+                '|Array index.*is out of bounds'
                 '|Dereference of undefined pointer value'
                 '|Does not handle strings that are not.*terminated.*if given one it may perform an over-read'
                 '|out of bounds read'
@@ -236,131 +230,181 @@ def warning_match_cwe(cwe, message):
                 'signed overflow'
                 '|Unless checked, the resulting number can exceed the expected range'
         )
-        """
-CWE194_Unexpected_Sign_Extension    signed overflow.
-CWE194_Unexpected_Sign_Extension    Size argument is greater than the length of the destination buffer
-CWE194_Unexpected_Sign_Extension    Unless checked, the resulting number can exceed the expected range (CWE-190). If source untrusted, check both minimum and maximum, even if the input had no minus sign (large numbers can roll over into negative number; consider saving to an unsigned value if that is intended).
+    elif cwe == 'CWE194_Unexpected_Sign_Extension':
+        matching_regex = re.compile(
+                'signed overflow'
+                '|Size argument is greater than the length of the destination buffer'
+                '|Unless checked, the resulting number can exceed the expected range'
+        )
+    elif cwe == 'CWE195_Signed_to_Unsigned_Conversion_Error':
+        matching_regex = re.compile(
+                'signed overflow'
+                '|Size argument is greater than the length of the destination buffer'
+                '|Unless checked, the resulting number can exceed the expected range'
+        )
+    elif cwe == 'CWE197_Numeric_Truncation_Error':
+        matching_regex = re.compile(
+                'Unless checked, the resulting number can exceed the expected range'
+        )
+    elif cwe == 'CWE242_Use_of_Inherently_Dangerous_Function':
+        matching_regex = re.compile(
+                'Obsolete function.*called\. It is recommended to use.*or.*instead'
+        )
+    elif cwe == 'CWE369_Divide_by_Zero':
+        matching_regex = re.compile(
+                '[dD]ivision by zero'
+        )
+    elif cwe == 'CWE377_Insecure_Temporary_File':
+        matching_regex = re.compile(
+                'is insecure as it always creates or uses insecure temporary file'
+        )
+    elif cwe == 'CWE398_Poor_Code_Quality':
+        matching_regex = re.compile(
+                'Redundant assignment of.*to itself'
+                '|Redundant code: Found a statement that begins with numeric constant'
+                '|Same expression on both sides of'
+        )
+    elif cwe == 'CWE401_Memory_Leak':
+        matching_regex = re.compile(
+                'Common realloc mistake.*nulled but not freed upon failure'
+                '|Memory leak'
+                '|Potential leak of memory pointed to by'
+        )
+    elif cwe == 'CWE415_Double_Free':
+        matching_regex = re.compile(
+                'Attempt to free released memory'
+                '|Deallocating a deallocated pointer'
+                '|Memory pointed to by.*is freed twice'
+        )
+    elif cwe == 'CWE416_Use_After_Free':
+        matching_regex = re.compile(
+                'Use of memory after it is freed'
+        )
+    elif cwe == 'CWE440_Expected_Behavior_Violation':
+        matching_regex = re.compile(
+                'Exception thrown in function declared not to throw exceptions'
+        )
+    elif cwe == 'CWE457_Use_of_Uninitialized_Variable':
+        matching_regex = re.compile(
+                'accessing uninitialized left-value'
+                '|Dereference of undefined pointer value'
+                '|Function call argument is an uninitialized value'
+                '|Uninitialized variable'
+                '|Variable.*is not assigned a value'
+        )
+    elif cwe == 'CWE467_Use_of_sizeof_on_Pointer_Type':
+        matching_regex = re.compile(
+                'Result of.*is converted to a pointer of type.*which is incompatible with sizeof operand type'
+                '|Size of pointer.*used instead of size of its data'
+        )
+    elif cwe == 'CWE469_Use_of_Pointer_Subtraction_to_Determine_Size':
+        matching_regex = re.compile(
+                'pointer subtraction'
+        )
+    elif cwe == 'CWE476_NULL_Pointer_Dereference':
+        matching_regex = re.compile(
+                'Access to field.*results in a dereference of a null pointer'
+                '|Array access.*results in a null pointer dereference'
+                '|Dereference of null pointer'
+                '|Dereference of undefined pointer value'
+                '|Either the condition.*is redundant or there is possible null pointer dereference'
+                '|Null pointer dereference'
+                '|Possible null pointer dereference'
+        )
+    elif cwe == 'CWE480_Use_of_Incorrect_Operator':
+        matching_regex = re.compile(
+                'Same expression on both sides of'
+        )
+    elif cwe == 'CWE481_Assigning_Instead_of_Comparing':
+        matching_regex = re.compile(
+                'Same expression on both sides of'
+        )
+    elif cwe == 'CWE526_Info_Exposure_Environment_Variables':
+        matching_regex = re.compile(
+                'Environment variables are untrustable input if they can be set by an attacker'
+        )
+    elif cwe == 'CWE562_Return_of_Stack_Variable_Address':
+        matching_regex = re.compile(
+                'accessing left-value that contains escaping addresses'
+        )
+    elif cwe == 'CWE563_Unused_Variable':
+        matching_regex = re.compile(
+                'Unused variable'
+                '|Value stored to.*during its initialization is never read'
+                '|Value stored to.*is never read'
+                '|Variable.*is assigned a value that is never used'
+                '|Variable.*is reassigned a value before the old one has been used'
+        )
+    elif cwe == 'CWE570_Expression_Always_False':
+        matching_regex = re.compile(
+                'Checking if unsigned variable.*is less than zero'
+                '|Condition.*is always false'
+                '|Unnecessary comparison of static strings'
+        )
+    elif cwe == 'CWE571_Expression_Always_True':
+        matching_regex = re.compile(
+                'Condition.*is always true'
+                '|Same expression on both sides of'
+                '|Unnecessary comparison of static strings'
+                '|Unsigned variable.*can.t be negative so it is unnecessary to test it'
+        )
+    elif cwe == 'CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer':
+        matching_regex = re.compile(
+                'accessing uninitialized left-value'
+                '|Assigned value is garbage or undefined'
+                '|Dereference of undefined pointer value'
+        )
+    elif cwe == 'CWE590_Free_Memory_Not_on_Heap':
+        matching_regex = re.compile(
+                'Argument to.*is the address of the.*variable.*which is not memory allocated by'
+                '|Deallocation of an auto-variable results in undefined behaviour'
+                '|Memory allocated by.*should not be deallocated'
+        )
+    elif cwe == 'CWE675_Duplicate_Operations_on_Resource':
+        matching_regex = re.compile(
+                'Deallocating a deallocated pointer'
+                '|Resource handle.*freed twice'
+        )
+    elif cwe == 'CWE680_Integer_Overflow_to_Buffer_Overflow':
+        matching_regex = re.compile(
+                'Invalid malloc.. argument.*The value is.*but the valid values are'
+                '|Memory allocation size is negative'
+                '|out of bounds write'
+                '|signed overflow'
+                '|Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues'
+                '|Suspicious code: sign conversion of data in calculation, even though data can have a negative value'
+                '|Unless checked, the resulting number can exceed the expected range'
+        )
+    elif cwe == 'CWE681_Incorrect_Conversion_Between_Numeric_Types':
+        matching_regex = re.compile(
+                'overflow in conversion from floating-point to integer'
+        )
+    elif cwe == 'CWE685_Function_Call_With_Incorrect_Number_of_Arguments':
+        matching_regex = re.compile(
+                'format string requires.*parameters but only.*is given'
+        )
+    elif cwe == 'CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument':
+        matching_regex = re.compile(
+                'in format string.*requires.*but the argument type is'
+        )
+    elif cwe == 'CWE761_Free_Pointer_Not_at_Start_of_Buffer':
+        matching_regex = re.compile(
+                'Argument to free.. is offset by X byte.* from the start of memory allocated by'
+        )
+    elif cwe == 'CWE762_Mismatched_Memory_Management_Routines':
+        matching_regex = re.compile(
+                'Memory allocated by.*should be deallocated by.*, not'
+                '|Mismatching allocation and deallocation'
+        )
+    elif cwe == 'CWE775_Missing_Release_of_File_Descriptor_or_Handle':
+        matching_regex = re.compile(
+                'Resource leak'
+        )
 
-CWE195_Signed_to_Unsigned_Conversion_Error    signed overflow.
-CWE195_Signed_to_Unsigned_Conversion_Error    Size argument is greater than the length of the destination buffer
-CWE195_Signed_to_Unsigned_Conversion_Error    Unless checked, the resulting number can exceed the expected range (CWE-190). If source untrusted, check both minimum and maximum, even if the input had no minus sign (large numbers can roll over into negative number; consider saving to an unsigned value if that is intended).
-
-
-CWE197_Numeric_Truncation_Error    Unless checked, the resulting number can exceed the expected range (CWE-190). If source untrusted, check both minimum and maximum, even if the input had no minus sign (large numbers can roll over into negative number; consider saving to an unsigned value if that is intended).
-
-CWE242_Use_of_Inherently_Dangerous_Function    Obsolete function X called. It is recommended to use X or X instead.
-
-CWE369_Divide_by_Zero    division by zero.
-CWE369_Divide_by_Zero    Division by zero
-CWE369_Divide_by_Zero    Division by zero.
-
-CWE377_Insecure_Temporary_File    Call to function X is insecure as it always creates or uses insecure temporary file.  Use X instead
-
-CWE398_Poor_Code_Quality    Redundant assignment of X to itself.
-CWE398_Poor_Code_Quality    Redundant code: Found a statement that begins with numeric constant.
-CWE398_Poor_Code_Quality    Same expression on both sides of X.
-
-CWE401_Memory_Leak    Common realloc mistake: X nulled but not freed upon failure
-CWE401_Memory_Leak    Memory leak: X
-CWE401_Memory_Leak    Potential leak of memory pointed to by X
-
-CWE415_Double_Free    Attempt to free released memory
-CWE415_Double_Free    Deallocating a deallocated pointer: X
-CWE415_Double_Free    Memory pointed to by X is freed twice.
-
-CWE416_Use_After_Free    Use of memory after it is freed
-
-CWE440_Expected_Behavior_Violation    Exception thrown in function declared not to throw exceptions.
-
-CWE457_Use_of_Uninitialized_Variable    accessing uninitialized left-value.
-CWE457_Use_of_Uninitialized_Variable    Dereference of undefined pointer value
-CWE457_Use_of_Uninitialized_Variable    Function call argument is an uninitialized value
-CWE457_Use_of_Uninitialized_Variable    Uninitialized variable: X
-CWE457_Use_of_Uninitialized_Variable    Variable X is not assigned a value.
-
-
-CWE467_Use_of_sizeof_on_Pointer_Type    Result of X is converted to a pointer of type X, which is incompatible with sizeof operand type X
-CWE467_Use_of_sizeof_on_Pointer_Type    Size of pointer X used instead of size of its data.
-
-CWE469_Use_of_Pointer_Subtraction_to_Determine_Size    pointer subtraction.
-
-CWE476_NULL_Pointer_Dereference    Access to field X results in a dereference of a null pointer (loaded from variable X)
-CWE476_NULL_Pointer_Dereference    Array access (from variable X) results in a null pointer dereference
-CWE476_NULL_Pointer_Dereference    Dereference of null pointer (loaded from variable X)
-CWE476_NULL_Pointer_Dereference    Dereference of undefined pointer value
-CWE476_NULL_Pointer_Dereference    Either the condition X is redundant or there is possible null pointer dereference: intPointer.
-CWE476_NULL_Pointer_Dereference    Null pointer dereference: X
-CWE476_NULL_Pointer_Dereference    Possible null pointer dereference: X
-
-CWE480_Use_of_Incorrect_Operator    Same expression on both sides of X.
-
-CWE481_Assigning_Instead_of_Comparing    Same expression on both sides of X.
-
-CWE526_Info_Exposure_Environment_Variables    Environment variables are untrustable input if they can be set by an attacker. They can have any content and length, and the same variable can be set more than once (CWE-807, CWE-20). Check environment variables carefully before using them.
-
-CWE562_Return_of_Stack_Variable_Address    accessing left-value that contains escaping addresses.
-
-CWE563_Unused_Variable    Unused variable: X
-CWE563_Unused_Variable    Value stored to X during its initialization is never read
-CWE563_Unused_Variable    Value stored to X is never read
-CWE563_Unused_Variable     Variable X is assigned a value that is never used.
-CWE563_Unused_Variable    Variable X is reassigned a value before the old one has been used.
-
-CWE570_Expression_Always_False    Checking if unsigned variable X is less than zero.
-CWE570_Expression_Always_False    Condition X is always false
-CWE570_Expression_Always_False    Unnecessary comparison of static strings.
-
-CWE571_Expression_Always_True    Condition X is always true
-CWE571_Expression_Always_True    Same expression on both sides of X.
-CWE571_Expression_Always_True    Unnecessary comparison of static strings.
-CWE571_Expression_Always_True    Unsigned variable X can't be negative so it is unnecessary to test it.
-
-CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer    accessing uninitialized left-value.
-CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer    Assigned value is garbage or undefined
-CWE588_Attempt_to_Access_Child_of_Non_Structure_Pointer    Dereference of undefined pointer value
-
-CWE590_Free_Memory_Not_on_Heap    Argument to free() is the address of the local variable X, which is not memory allocated by malloc()
-CWE590_Free_Memory_Not_on_Heap    Argument to free() is the address of the static variable X, which is not memory allocated by malloc()
-CWE590_Free_Memory_Not_on_Heap    Argument to X is the address of the local variable X, which is not memory allocated by X
-CWE590_Free_Memory_Not_on_Heap    Argument to X is the address of the static variable X, which is not memory allocated by X
-CWE590_Free_Memory_Not_on_Heap    Deallocation of an auto-variable results in undefined behaviour.
-CWE590_Free_Memory_Not_on_Heap    Memory allocated by alloca() should not be deallocated
-
-CWE675_Duplicate_Operations_on_Resource    Deallocating a deallocated pointer: X
-CWE675_Duplicate_Operations_on_Resource    Resource handle X freed twice.
-
-CWE680_Integer_Overflow_to_Buffer_Overflow    Invalid malloc() argument nr 1. The value is -4 but the valid values are X.
-CWE680_Integer_Overflow_to_Buffer_Overflow    Memory allocation size is negative.
-CWE680_Integer_Overflow_to_Buffer_Overflow    out of bounds write.
-CWE680_Integer_Overflow_to_Buffer_Overflow    signed overflow.
-CWE680_Integer_Overflow_to_Buffer_Overflow    Statically-sized arrays can be improperly restricted, leading to potential overflows or other issues (CWE-119:CWE-120). Perform bounds checking, use functions that limit length, or ensure that the size is larger than the maximum possible length.
-CWE680_Integer_Overflow_to_Buffer_Overflow    Suspicious code: sign conversion of data in calculation, even though data can have a negative value
-CWE680_Integer_Overflow_to_Buffer_Overflow    Unless checked, the resulting number can exceed the expected range (CWE-190). If source untrusted, check both minimum and maximum, even if the input had no minus sign (large numbers can roll over into negative number; consider saving to an unsigned value if that is intended).
-
-CWE681_Incorrect_Conversion_Between_Numeric_Types    overflow in conversion from floating-point to integer.
-
-CWE685_Function_Call_With_Incorrect_Number_of_Arguments    sprintf format string requires 2 parameters but only 1 is given.
-
-CWE688_Function_Call_With_Incorrect_Variable_or_Reference_as_Argument    %s in format string (no. 1) requires X but the argument type is X.
-
-CWE761_Free_Pointer_Not_at_Start_of_Buffer    Argument to free() is offset by X byte from the start of memory allocated by malloc()
-CWE761_Free_Pointer_Not_at_Start_of_Buffer    Argument to free() is offset by X bytes from the start of memory allocated by malloc()
-
-CWE762_Mismatched_Memory_Management_Routines    Memory allocated by calloc() should be deallocated by free(), not X
-CWE762_Mismatched_Memory_Management_Routines    Memory allocated by malloc() should be deallocated by free(), not X
-CWE762_Mismatched_Memory_Management_Routines    Memory allocated by realloc() should be deallocated by free(), not X
-CWE762_Mismatched_Memory_Management_Routines    Memory allocated by strdup() should be deallocated by free(), not X
-CWE762_Mismatched_Memory_Management_Routines    Memory allocated by X should be deallocated by X, not free()
-CWE762_Mismatched_Memory_Management_Routines    Memory allocated by X should be deallocated by X, not X
-CWE762_Mismatched_Memory_Management_Routines    Mismatching allocation and deallocation: X
-
-CWE775_Missing_Release_of_File_Descriptor_or_Handle    Resource leak: X
-        """
-
-###############
-###############
-
-    return re.search(matching_regex, message)
+    if matching_regex is not None:
+        return re.search(matching_regex, message)
+    else:
+        return None
 
 
 if __name__ == "__main__":
@@ -374,6 +418,6 @@ if __name__ == "__main__":
         labeled_reports = label_warnings(reports)
         for report in labeled_reports:
             tool_name = report.metadata.generator.name
-            fh_report_path = 'reports/firehose/labeled_reports' + tool_name + '.xml'
+            fh_report_path = 'reports/firehose/labeled_reports/' + tool_name + '.xml'
             with open(fh_report_path, 'wb') as fh_report:
                 report.to_xml().write(fh_report, encoding='utf-8')
