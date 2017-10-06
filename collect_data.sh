@@ -46,4 +46,4 @@ printf "\tcppcheck: %s\n" \
 printf "\tscan-build (Clang Analyzer): %s\n" \
 `rpm -qi clang-analyzer | grep Version | awk '{ print $3 }'`
 
-python firehose_report_parser stats
+python firehose_report_parser.py stats
