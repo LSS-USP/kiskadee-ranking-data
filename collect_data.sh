@@ -3,62 +3,47 @@
 C_FILES=c_testcases.list
 CPP_FILES=cpp_testcases.list
 
-# Total number of test cases in juliet
-find juliet/testcases -regex '.*[0-9a]\.c[p]*$' | wc -l
+printf "Total number of test cases in Juliet: %s\n" \
+`find juliet/testcases -regex '.*[0-9a]\.c[p]*$' | wc -l`
 
-# Number of c test cases in juliet
-find juliet/testcases -regex '.*[0-9a]\.c$' | wc -l
+printf "Number of C test cases in Juliet: %s\n" \
+`find juliet/testcases -regex '.*[0-9a]\.c$' | wc -l`
 
-# Number of cpp test cases in juliet
-find juliet/testcases -regex '.*[0-9a]\.cpp$' | wc -l
+printf "Number of C++ test cases in Juliet: %s\n" \
+`find juliet/testcases -regex '.*[0-9a]\.cpp$' | wc -l`
 
-# Number of CWEs covered in juliet
-ls juliet/testcases | wc -l
+printf "Number of CWEs covered in juliet: %s\n" \
+`ls juliet/testcases | wc -l`
 
-# Number of c test cases used in this experiment
-# this excludes windows specific test cases
-cat $C_FILES | grep '.*[0-9a]\.c$' | wc -l
+printf "Number of C test cases used in this experiment: %s\n" \
+`cat $C_FILES | grep '.*[0-9a]\.c$' | wc -l`
+echo "\tthis excludes windows specific test cases"
 
-# Number of cpp test cases used in this experiment
-# this excludes windows specific test cases
-cat $CPP_FILES | grep '.*[0-9a]\.cpp$' | wc -l
+printf "Number of C++ test cases used in this experiment: %s\n" \
+`cat $CPP_FILES | grep '.*[0-9a]\.cpp$' | wc -l`
+echo "\tthis excludes windows specific test cases"
 
-# Number of CWEs covered in juliet used in this experiment
-# this excludes CWEs containing only windows specific test cases
-cat c_testcases.list cpp_testcases.list | cut -d / -f3 | sort -u | wc -l
-# number of them convered on c test cases
-cat c_testcases.list | cut -d / -f3 | sort -u | wc -l
-# number of them convered on cpp test cases
-cat cpp_testcases.list | cut -d / -f3 | sort -u | wc -l
+printf "Number of different Juliet CWEs analyzed in this experiment: %s\n" \
+`cat c_testcases.list cpp_testcases.list | cut -d / -f3 | sort -u | wc -l`
+echo "\tthis excludes CWEs containing only windows specific test cases"
 
-# Version of static analyzers
+printf "Number of CWEs convered on the C test cases used %s\n" \
+`cat c_testcases.list | cut -d / -f3 | sort -u | wc -l`
+
+printf "Number of CWEs convered on the C++ test cases used %s\n" \
+`cat cpp_testcases.list | cut -d / -f3 | sort -u | wc -l`
+
+echo 'Version of static analyzers:'
 # This is RPM distro specific and could be improved
-# frama-c
-rpm -qi frama-c | grep Version | awk '{ print $3 }'
+printf "\tFrama-C: %s\n" \
+`rpm -qi frama-c | grep Version | awk '{ print $3 }'`
 # flawfinder
-rpm -qi flawfinder | grep Version | awk '{ print $3 }'
-# cppcheck
-rpm -qi cppcheck | grep Version | awk '{ print $3 }'
+printf "\tflawfinder: %s\n" \
+`rpm -qi flawfinder | grep Version | awk '{ print $3 }'`
+printf "\tcppcheck: %s\n" \
+`rpm -qi cppcheck | grep Version | awk '{ print $3 }'`
 # scan-build
-rpm -qi clang-analyzer | grep Version | awk '{ print $3 }'
+printf "\tscan-build (Clang Analyzer): %s\n" \
+`rpm -qi clang-analyzer | grep Version | awk '{ print $3 }'`
 
-# Total number of warnings triggered
-# this must come from the firehose parser (python file)
-# frama-c
-# flawfinder
-# cppcheck
-# scan-build
-
-# Total number of warnings labeled
-# frama-c
-## true positives
-## false positives
-# flawfinder
-## true positives
-## false positives
-# cppcheck
-## true positives
-## false positives
-# scan-build
-## true positives
-## false positives
+python firehose_report_parser stats

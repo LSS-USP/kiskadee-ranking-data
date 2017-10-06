@@ -4,10 +4,17 @@ firehose format and to parse the firehose xml files to:
     - label the warnings
     - extract features
     - save trainning set in CSV format
+
+python firehose_report_parser.py
+    Convert reports to firehose format and label them
+
+python firehose_report_parser.py stats
+    Prints stats related to the reports
 """
 
 import os
 import re
+import sys
 import glob
 from collections import defaultdict
 from firehose.model import Analysis, CustomFields
@@ -57,6 +64,12 @@ def convert_reports_to_firehose():
 def get_reports():
     results = []
     for fh_xml_file in glob.glob(os.path.join('reports', 'firehose', '*.xml')):
+        results.append(Analysis.from_xml(fh_xml_file))
+    return results
+
+def get_labeled_reports():
+    results = []
+    for fh_xml_file in glob.glob(os.path.join('reports', 'firehose', 'labeled_reports', '*.xml')):
         results.append(Analysis.from_xml(fh_xml_file))
     return results
 
@@ -407,12 +420,43 @@ def warning_match_cwe(cwe, message):
         return None
 
 
+def print_stats(reports, header, labels=False):
+    total_warnings = 0
+    print('%s:', header)
+    for report in reports:
+        tool = report.metadata.generator.name
+        warnings = len(report.results)
+        total_warnings += warnings
+        print('\t%s: %s' % (tool, warnings))
+        if labels:
+            tp = 0  # true positives
+            fp = 0  # false positives
+            for warning in report.results:
+                if warning.customfields['positive']:
+                    tp += 1
+                else:
+                    fp += 1
+            print('\t\tTP: %s' % tp)
+            print('\t\tFP: %s' % fp)
+    print('\tTOTAL: %s' % total_warnings)
+
+
 if __name__ == "__main__":
-    # check if reports are already converted
-    # if not, convert them
+    if sys.argv[1] == 'stats':
+        if not os.path.exists('reports/firehose/labeled_reports'):
+            sys.exit(1)
+        reports = get_reports()
+        labeled_reports = get_labeled_reports()
+        print_stats(reports, "Number of warnings triggered")
+        print()
+        print_stats(labeled_reports, "Number of warnings labeled")
+        sys.exit(0)
+
+    # if reports are not converted to firehose yet, convert
     if not os.path.exists('reports/firehose'):
         convert_reports_to_firehose()
 
+    # if reports are not labeled yet, label
     if not os.path.exists('reports/firehose/labeled_reports'):
         os.makedirs('reports/firehose/labeled_reports')
         reports = get_reports()
