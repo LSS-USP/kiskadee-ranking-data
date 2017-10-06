@@ -414,6 +414,7 @@ if __name__ == "__main__":
         convert_reports_to_firehose()
 
     if not os.path.exists('reports/firehose/labeled_reports'):
+        os.makedirs('reports/firehose/labeled_reports')
         reports = get_reports()
         labeled_reports = label_warnings(reports)
         for report in labeled_reports:
