@@ -143,7 +143,9 @@ def label_warnings(reports):
             file_line = warning.location.point.line
             if((not re.search('^CWE[^.]*\.(c|cpp)$', file_name)) or
                     (file_line not in line_labels[file_name])):
-                continue  # Discard non labelable warning
+                # Discard non labelable warning
+                report.results.remove(warning)
+                continue
 
             message = warning.message.text
             # cwe = warning.cwe
@@ -159,6 +161,8 @@ def label_warnings(reports):
                     warning.customfields['positive'] = 'true'
                 elif line_labels[file_name][file_line] == 'bad':
                     warning.customfields['positive'] = 'false'
+                else:
+                    raise NameError("Cannot label warning")
             else:
                 report.results.remove(warning)
 
@@ -432,7 +436,7 @@ def print_stats(reports, header, labels=False):
             tp = 0  # true positives
             fp = 0  # false positives
             for warning in report.results:
-                if warning.customfields['positive']:
+                if warning.customfields['positive'] == 'true':
                     tp += 1
                 else:
                     fp += 1
