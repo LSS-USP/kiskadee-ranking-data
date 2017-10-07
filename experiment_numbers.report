@@ -1,0 +1,48 @@
+Total number of test cases in Juliet: 61387
+
+Number of C test cases in Juliet: 36078
+
+Number of C++ test cases in Juliet: 25309
+
+Number of CWEs covered in juliet: 118
+
+Number of C test cases used in this experiment: 22459
+	this excludes windows specific test cases
+
+Number of C++ test cases used in this experiment: 16641
+	this excludes windows specific test cases
+
+Number of different Juliet CWEs analyzed in this experiment: 91
+	this excludes CWEs containing only windows specific test cases
+
+Number of CWEs convered on the C test cases used 82
+
+Number of CWEs convered on the C++ test cases used 51
+
+Version of static analyzers:
+	Frama-C: 1.14
+	flawfinder: 1.31
+	cppcheck: 1.80
+	scan-build (Clang Analyzer): 4.0.1
+
+Number of warnings triggered:
+	flawfinder: 162477
+	cppcheck: 124025
+	clang-analyzer: 37229
+	frama-c: 120573
+	TOTAL: 444304
+
+Number of warnings labeled:
+	flawfinder: 37020
+		TP: 19970
+		FP: 17050
+	cppcheck: 4035
+		TP: 314
+		FP: 3721
+	clang-analyzer: 6207
+		TP: 984
+		FP: 5223
+	frama-c: 15717
+		TP: 8892
+		FP: 6825
+	TOTAL: 62979
