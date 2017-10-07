@@ -137,7 +137,8 @@ def label_warnings(reports):
         # we want to iterate in a copy of results to be able to remove entries.
         for warning in report.results.copy():
             if not warning.location:
-                # Only one warning is being discarded here (missing include)
+                # Discard non labelable warning (missing include warnings)
+                report.results.remove(warning)
                 continue  # discard
             file_name = os.path.basename(warning.location.file.givenpath)
             file_line = warning.location.point.line
@@ -426,7 +427,7 @@ def warning_match_cwe(cwe, message):
 
 def print_stats(reports, header, labels=False):
     total_warnings = 0
-    print('%s:', header)
+    print('%s:' % header)
     for report in reports:
         tool = report.metadata.generator.name
         warnings = len(report.results)
