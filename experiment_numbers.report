@@ -22,8 +22,8 @@ Number of CWEs convered on the C++ test cases used 51
 Version of static analyzers:
 	Frama-C: 1.14
 	flawfinder: 1.31
-	cppcheck: 1.80
-	scan-build (Clang Analyzer): 4.0.1
+	cppcheck: 1.79
+	scan-build (Clang Analyzer): 3.9.1
 
 Number of warnings triggered:
 	flawfinder: 162477
