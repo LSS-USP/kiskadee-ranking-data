@@ -446,7 +446,23 @@ def print_stats(reports, header, labels=False):
     print('\tTOTAL: %s' % total_warnings)
 
 
+def extract_features(labeled_reports):
+    """
+    input: labeled reports
+    output: features CSV file
+    """
+    for report in labeled_reports:
+        for warning in report.results:
+            label = warning.customfields['positive']
+            print(warning.severity)
+
+
 if __name__ == "__main__":
+    if len(sys.argv) > 1 and sys.argv[1] == 'features':
+        labeled_reports = get_labeled_reports()
+        extract_features(labeled_reports)
+        sys.exit(0)
+
     if len(sys.argv) > 1 and sys.argv[1] == 'stats':
         if not os.path.exists('reports/firehose/labeled_reports'):
             sys.exit(1)
