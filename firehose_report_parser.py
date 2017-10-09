@@ -512,21 +512,26 @@ def extract_features(labeled_reports):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) > 1 and sys.argv[1] == 'features':
-        print('extracting...')
-        labeled_reports = get_labeled_reports()
-        extract_features(labeled_reports)
-        sys.exit(0)
+    if len(sys.argv) > 1:
+        if sys.argv[1] == 'features':
+            print('extracting...')
+            labeled_reports = get_labeled_reports()
+            extract_features(labeled_reports)
+            sys.exit(0)
 
-    if len(sys.argv) > 1 and sys.argv[1] == 'stats':
-        if not os.path.exists('reports/firehose/labeled_reports'):
+        elif sys.argv[1] == 'stats':
+            if not os.path.exists('reports/firehose/labeled_reports'):
+                sys.exit(1)
+            reports = get_reports()
+            labeled_reports = get_labeled_reports()
+            print_stats(reports, "Number of warnings triggered")
+            print()
+            print_stats(labeled_reports, "Number of warnings labeled", True)
+            sys.exit(0)
+
+        else:
+            print("wrong argument")
             sys.exit(1)
-        reports = get_reports()
-        labeled_reports = get_labeled_reports()
-        print_stats(reports, "Number of warnings triggered")
-        print()
-        print_stats(labeled_reports, "Number of warnings labeled", True)
-        sys.exit(0)
 
     # if reports are not converted to firehose yet, convert
     if not os.path.exists('reports/firehose'):
