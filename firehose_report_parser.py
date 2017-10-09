@@ -489,7 +489,7 @@ def extract_features(labeled_reports):
             redundancy_level = warning.customfields['redundancy_level']
             neighbors = warning.customfields['neighbors']
             category = warning.customfields['category']
-            location = file_name + ':' + file_line
+            location = file_name + ':' + str(file_line)
             if severity is None:
                 severity = 3
             elif severity == 'error':
