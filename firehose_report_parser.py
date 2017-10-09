@@ -15,6 +15,7 @@ python firehose_report_parser.py stats
 import os
 import re
 import sys
+import csv
 import glob
 from collections import defaultdict
 from firehose.model import Analysis, CustomFields
@@ -451,14 +452,68 @@ def extract_features(labeled_reports):
     input: labeled reports
     output: features CSV file
     """
+    features_csv = open('features.csv', 'w', newline='')
+    feature_writer = csv.writer(features_csv)
+    feature_writer.writerow(['location', 'tool_name', 'severity', 'redundancy_level', 'neighbors', 'category', 'label'])
     for report in labeled_reports:
         for warning in report.results:
+            warning.customfields['redundancy_level'] = 0
+            warning.customfields['neighbors'] = 0
             label = warning.customfields['positive']
-            print(warning.severity)
+            tool_name = report.metadata.generator.name
+            file_name = os.path.basename(warning.location.file.givenpath)
+            file_line = warning.location.point.line
+            severity = warning.severity
+            for other in report.results:
+                other_file_name = os.path.basename(other.location.file.givenpath)
+                other_file_line = other.location.point.line
+                if(file_name == other_file_name):
+                    if(file_line == other_file_line):
+                        warning.customfields['redundancy_level'] += 1
+                    elif(int(file_line) - 2 <= int(other_file_line) <= int(file_line) + 2):
+                        warning.customfields['neighbors'] += 1
+
+            if(re.search('^CWE12\d|^CWE680', file_name)):
+                warning.customfields['category'] = 'buffer'
+            elif(re.search('^CWE19\d', file_name)):
+                warning.customfields['category'] = 'overflow'
+            elif(re.search('^CWE369', file_name)):
+                warning.customfields['category'] = 'div0'
+            elif(re.search('^CWE4(67|69|76)', file_name)):
+                warning.customfields['category'] = 'pointer'
+            elif(re.search('^CWE(401|415|416|562|590|675|761|762)', file_name)):
+                warning.customfields['category'] = 'memory'
+            else:
+                warning.customfields['category'] = 'other'
+
+            redundancy_level = warning.customfields['redundancy_level']
+            neighbors = warning.customfields['neighbors']
+            category = warning.customfields['category']
+            location = file_name + ':' + file_line
+            if severity is None:
+                severity = 3
+            elif severity == 'error':
+                severity = 5
+            elif severity == 'warning':
+                severity = 4
+            elif severity == 'style':
+                severity = 3
+            elif severity == 'performance':
+                severity = 2
+            elif severity == 'portability':
+                severity = 1
+            elif severity == 'debug':
+                severity = 0
+            elif severity == 'information':
+                severity = 0
+            feature_writer.writerow([location, tool_name, severity, redundancy_level, neighbors, category, label])
+            # print("%s:%s,%s,%s,%s,%s,%s,%s" % (file_name, file_line, tool_name, severity, redundancy_level, neighbors, category, label))
+    features_csv.close()
 
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == 'features':
+        print('extracting...')
         labeled_reports = get_labeled_reports()
         extract_features(labeled_reports)
         sys.exit(0)

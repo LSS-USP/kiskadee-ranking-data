@@ -1,4 +1,4 @@
-all: analysis funcinfo label stats
+all: analysis funcinfo label stats features
 
 analysis: bootstrap
 	./run_analyses.sh
@@ -22,7 +22,12 @@ experiment_numbers.report: collect_data.sh firehose_report_parser.py reports/fir
 
 stats: experiment_numbers.report label
 
-.PHONY: clean analysis bootstrap funcinfo all stats
+features.csv:
+	python firehose_report_parser.py features
+
+features: features.csv label
+
+.PHONY: clean analysis bootstrap funcinfo all stats features
 
 clean:
-	rm -rf juliet *.list reports *.zip experiment_numbers.report
+	rm -rf juliet *.list reports *.zip experiment_numbers.report features.csv
