@@ -1,8 +1,8 @@
 all: analysis funcinfo label stats features
 
-analysis: reports/scan-build reports/cppcheck reports/frama-c reports/flawfinder run_analyses.sh
+analysis: reports run_analyses.sh
 
-run_analyses.sh: bootstrap 
+run_analyses.sh reports: bootstrap 
 	./run_analyses.sh
 
 c_testcases.list cpp_testcases.list juliet: bootstrap.sh
@@ -18,6 +18,8 @@ funcinfo: testcase_functions_scope.list
 label: bootstrap analysis funcinfo firehose_report_parser.py
 
 firehose_report_parser.py: reports/firehose reports/firehose/labeled_reports
+
+reports/firehose reports/firehose/labeled_reports:
 	python firehose_report_parser.py
 
 # All data files should be dependencieas here
