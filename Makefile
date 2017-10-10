@@ -1,6 +1,8 @@
 all: analysis funcinfo label stats features
 
-analysis: bootstrap
+analysis: reports/scan-build reports/cppcheck reports/frama-c reports/flawfinder run_analyses.sh
+
+run_analyses.sh: bootstrap 
 	./run_analyses.sh
 
 c_testcases.list cpp_testcases.list juliet: bootstrap.sh
@@ -8,26 +10,28 @@ c_testcases.list cpp_testcases.list juliet: bootstrap.sh
 
 bootstrap: c_testcases.list cpp_testcases.list juliet
 
-testcase_functions_scope.list: get_functions_info.sh
+testcase_functions_scope.list: get_functions_info.sh bootstrap
 	./get_functions_info.sh
 
 funcinfo: testcase_functions_scope.list
 
-label: bootstrap analysis funcinfo
+label: bootstrap analysis funcinfo firehose_report_parser.py
+
+firehose_report_parser.py: reports/firehose reports/firehose/labeled_reports
 	python firehose_report_parser.py
 
 # All data files should be dependencieas here
-experiment_numbers.report: collect_data.sh firehose_report_parser.py reports/firehose
+experiment_numbers.report: collect_data.sh label
 	./collect_data.sh > experiment_numbers.report
 
-stats: experiment_numbers.report label
+stats: experiment_numbers.report
 
-features.csv:
+features.csv: label
 	python firehose_report_parser.py features
 
-features: features.csv label
+features: features.csv
 
-.PHONY: clean analysis bootstrap funcinfo all stats features
+.PHONY: clean analysis bootstrap funcinfo all stats features label
 
 clean:
 	rm -rf juliet *.list reports *.zip experiment_numbers.report features.csv
