@@ -454,24 +454,32 @@ def extract_features(labeled_reports):
     """
     features_csv = open('features.csv', 'w', newline='')
     feature_writer = csv.writer(features_csv)
-    feature_writer.writerow(['location', 'tool_name', 'severity', 'redundancy_level', 'neighbors', 'category', 'label'])
+    feature_writer.writerow(['location', 'tool_name', 'severity', 'redundancy_level', 'neighbors', 'category', 'clang-analyzer', 'frama-c', 'cppcheck', 'flawfinder', 'label'])
     for report in labeled_reports:
         for warning in report.results:
+            warning.customfields['clang-analyzer'] = 'no'
+            warning.customfields['frama-c'] = 'no'
+            warning.customfields['cppcheck'] = 'no'
+            warning.customfields['flawfinder'] = 'no'
             warning.customfields['redundancy_level'] = 0
             warning.customfields['neighbors'] = 0
             label = warning.customfields['positive']
             tool_name = report.metadata.generator.name
+            warning.customfields[tool_name] = 'yes'
             file_name = os.path.basename(warning.location.file.givenpath)
             file_line = warning.location.point.line
             severity = warning.severity
-            for other in report.results:
-                other_file_name = os.path.basename(other.location.file.givenpath)
-                other_file_line = other.location.point.line
-                if(file_name == other_file_name):
-                    if(file_line == other_file_line):
-                        warning.customfields['redundancy_level'] += 1
-                    elif(int(file_line) - 2 <= int(other_file_line) <= int(file_line) + 2):
-                        warning.customfields['neighbors'] += 1
+            for other_report in labeled_reports:
+                for other in other_report.results:
+                    other_file_name = os.path.basename(other.location.file.givenpath)
+                    other_file_line = other.location.point.line
+                    if(file_name == other_file_name):
+                        if(file_line == other_file_line):
+                            warning.customfields['redundancy_level'] += 1
+                            other_tool_name = other_report.metadata.generator.name
+                            warning.customfields[other_tool_name] = 'yes'
+                        elif(int(file_line) - 2 <= int(other_file_line) <= int(file_line) + 2):
+                            warning.customfields['neighbors'] += 1
 
             if(re.search('^CWE12\d|^CWE680', file_name)):
                 warning.customfields['category'] = 'buffer'
@@ -506,7 +514,11 @@ def extract_features(labeled_reports):
                 severity = 0
             elif severity == 'information':
                 severity = 0
-            feature_writer.writerow([location, tool_name, severity, redundancy_level, neighbors, category, label])
+            in_clanganalyzer = warning.customfields['clang-analyzer']
+            in_framac = warning.customfields['frama-c']
+            in_cppcheck = warning.customfields['cppcheck']
+            in_flawfinder = warning.customfields['flawfinder']
+            feature_writer.writerow([location, tool_name, severity, redundancy_level, neighbors, category, in_clanganalyzer, in_framac, in_cppcheck, in_flawfinder, label])
             # print("%s:%s,%s,%s,%s,%s,%s,%s" % (file_name, file_line, tool_name, severity, redundancy_level, neighbors, category, label))
     features_csv.close()
 
