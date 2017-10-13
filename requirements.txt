@@ -1,2 +1,5 @@
 six
 firehose
+sklearn
+numpy
+scipy
