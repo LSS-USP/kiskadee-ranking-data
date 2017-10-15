@@ -59,6 +59,11 @@ The results will be stored under the `reports` directory.
 * You can check that there are no repeated file names in the set of test cases
   used for this experiment with the folowing command:
 
+### 2017-10-14
+
+* Added new feature with number of warnings in a file, reaching 69% precision
+* when I add the file name (we no not want it) it goes up to 71%
+
 ```
 test `cat c_testcases.list cpp_testcases.list | sed 's/.*\/\([^/]*\.c[p]*\).*/\1/' | sort -u | wc -l` == `cat c_testcases.list cpp_testcases.list | wc -l` && echo 'There are no repeated file names in the used set of the test suite'
 ```
