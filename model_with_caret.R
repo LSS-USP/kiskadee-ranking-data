@@ -8,5 +8,5 @@ train_control <- trainControl(method="cv", number=10)
 # adaboost uses the fastadaboostpackage
 # the nIter param sets the number of trees to train
 #model <- train(label~tool_name+severity+redundancy_level+neighbors+category, data=raw_data, trControl=train_control, method="adaboost", tuneGrid=grid)
-model <- train(label~tool_name+severity+redundancy_level+neighbors+category+clang_analyzer+frama_c+cppcheck+flawfinder+warnings_in_this_file, data=raw_data, trControl=train_control, method="adaboost")
+model <- train(label~tool_name+severity+redundancy_level+neighbors+category+clang_analyzer+frama_c+cppcheck+warnings_in_this_file, data=raw_data, trControl=train_control, method="adaboost")
 print(model)

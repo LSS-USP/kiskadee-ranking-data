@@ -68,9 +68,15 @@ def get_reports():
         results.append(Analysis.from_xml(fh_xml_file))
     return results
 
-def get_labeled_reports():
+
+def get_labeled_reports(exclude=[]):
     results = []
-    for fh_xml_file in glob.glob(os.path.join('reports', 'firehose', 'labeled_reports', '*.xml')):
+    firehose_reports = glob.glob(os.path.join('reports', 'firehose', 'labeled_reports', '*.xml'))
+    for analyzer in exclude:
+        if analyzer == 'scan-build':
+            analyzer = 'clang-analyzer'
+        firehose_reports.remove('reports/firehose/labeled_reports/%s.xml' % analyzer)
+    for fh_xml_file in firehose_reports:
         results.append(Analysis.from_xml(fh_xml_file))
     return results
 
@@ -454,13 +460,14 @@ def extract_features(labeled_reports):
     """
     features_csv = open('features.csv', 'w', newline='')
     feature_writer = csv.writer(features_csv)
-    feature_writer.writerow(['location', 'tool_name', 'severity', 'redundancy_level', 'neighbors', 'category', 'clang_analyzer', 'frama_c', 'cppcheck', 'flawfinder', 'warnings_in_this_file', 'label'])
+    # Remember to reintroduce excluded tools in this list
+    feature_writer.writerow(['location', 'tool_name', 'severity', 'redundancy_level', 'neighbors', 'category', 'clang_analyzer', 'frama_c', 'cppcheck', 'warnings_in_this_file', 'label'])
     for report in labeled_reports:
         for warning in report.results:
             warning.customfields['clang-analyzer'] = 'no'
             warning.customfields['frama-c'] = 'no'
             warning.customfields['cppcheck'] = 'no'
-            warning.customfields['flawfinder'] = 'no'
+            # warning.customfields['flawfinder'] = 'no'
             warning.customfields['redundancy_level'] = 0
             warning.customfields['neighbors'] = 0
             warning.customfields['warnings_in_this_file'] = 0
@@ -501,7 +508,7 @@ def extract_features(labeled_reports):
             category = warning.customfields['category']
             location = file_name + ':' + str(file_line)
             if severity is None:
-                severity = 3
+                severity = 4
             elif severity == 'error':
                 severity = 5
             elif severity == 'warning':
@@ -519,10 +526,10 @@ def extract_features(labeled_reports):
             in_clanganalyzer = warning.customfields['clang-analyzer']
             in_framac = warning.customfields['frama-c']
             in_cppcheck = warning.customfields['cppcheck']
-            in_flawfinder = warning.customfields['flawfinder']
+            # in_flawfinder = warning.customfields['flawfinder']
             warnings_in_this_file = warning.customfields['warnings_in_this_file']
-            feature_writer.writerow([location, tool_name, severity, redundancy_level, neighbors, category, in_clanganalyzer, in_framac, in_cppcheck, in_flawfinder, warnings_in_this_file, label])
-            # print("%s:%s,%s,%s,%s,%s,%s,%s" % (file_name, file_line, tool_name, severity, redundancy_level, neighbors, category, label))
+            # Remember to reintroduce excluded tools in this list
+            feature_writer.writerow([location, tool_name, severity, redundancy_level, neighbors, category, in_clanganalyzer, in_framac, in_cppcheck, warnings_in_this_file, label])
     features_csv.close()
 
 
