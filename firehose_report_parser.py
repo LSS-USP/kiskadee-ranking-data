@@ -454,7 +454,7 @@ def extract_features(labeled_reports):
     """
     features_csv = open('features.csv', 'w', newline='')
     feature_writer = csv.writer(features_csv)
-    feature_writer.writerow(['location', 'tool_name', 'severity', 'redundancy_level', 'neighbors', 'category', 'clang-analyzer', 'frama-c', 'cppcheck', 'flawfinder', 'label'])
+    feature_writer.writerow(['location', 'tool_name', 'severity', 'redundancy_level', 'neighbors', 'category', 'clang_analyzer', 'frama_c', 'cppcheck', 'flawfinder', 'warnings_in_this_file', 'label'])
     for report in labeled_reports:
         for warning in report.results:
             warning.customfields['clang-analyzer'] = 'no'
@@ -463,6 +463,7 @@ def extract_features(labeled_reports):
             warning.customfields['flawfinder'] = 'no'
             warning.customfields['redundancy_level'] = 0
             warning.customfields['neighbors'] = 0
+            warning.customfields['warnings_in_this_file'] = 0
             label = warning.customfields['positive']
             tool_name = report.metadata.generator.name
             warning.customfields[tool_name] = 'yes'
@@ -474,6 +475,7 @@ def extract_features(labeled_reports):
                     other_file_name = os.path.basename(other.location.file.givenpath)
                     other_file_line = other.location.point.line
                     if(file_name == other_file_name):
+                        warning.customfields['warnings_in_this_file'] += 1
                         if(file_line == other_file_line):
                             warning.customfields['redundancy_level'] += 1
                             other_tool_name = other_report.metadata.generator.name
@@ -518,7 +520,8 @@ def extract_features(labeled_reports):
             in_framac = warning.customfields['frama-c']
             in_cppcheck = warning.customfields['cppcheck']
             in_flawfinder = warning.customfields['flawfinder']
-            feature_writer.writerow([location, tool_name, severity, redundancy_level, neighbors, category, in_clanganalyzer, in_framac, in_cppcheck, in_flawfinder, label])
+            warnings_in_this_file = warning.customfields['warnings_in_this_file']
+            feature_writer.writerow([location, tool_name, severity, redundancy_level, neighbors, category, in_clanganalyzer, in_framac, in_cppcheck, in_flawfinder, warnings_in_this_file, label])
             # print("%s:%s,%s,%s,%s,%s,%s,%s" % (file_name, file_line, tool_name, severity, redundancy_level, neighbors, category, label))
     features_csv.close()
 
