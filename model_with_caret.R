@@ -8,7 +8,7 @@ testing_data  <- raw_data[-inTraining,]
 train_control <- trainControl(method="repeatedcv", number=10, repeats=10)
 # grid <- expand.grid(nIter=10, method='Adaboost.M1')
 set.seed(825)
-model <- train(label~tool_name+severity+redundancy_level+neighbors+category+clang_analyzer+frama_c+cppcheck+warnings_in_this_file, data=training_data, trControl=train_control, method="adaboost")#, tuneGrid=grid)
+model <- train(label~tool_name+severity+redundancy_level+neighbors+category+clang_analyzer+frama_c+cppcheck+warnings_in_this_file+language, data=training_data, trControl=train_control, method="adaboost")#, tuneGrid=grid)
 print(model)
 
 

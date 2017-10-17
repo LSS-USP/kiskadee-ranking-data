@@ -2,7 +2,7 @@
 library(fastAdaboost)
 raw_data <- read.csv("features.csv", header=TRUE, sep=",")
 print("begin training M1")
-test_adaboost<-adaboost(label~tool_name+severity+redundancy_level+neighbors+category+clang_analyzer+frama_c+cppcheck+warnings_in_this_file, raw_data, 10)
+test_adaboost<-adaboost(label~tool_name+severity+redundancy_level+neighbors+category+clang_analyzer+frama_c+cppcheck+warnings_in_this_file+language, raw_data, 10)
 print("end training")
 print("begin predictions M1")
 pred <- predict( test_adaboost,newdata=raw_data)
@@ -24,7 +24,7 @@ print("END")
 
 
 #print("begin training SAMMER.R")
-#test_real_adaboost<-real_adaboost(label~tool_name+severity+redundancy_level+neighbors+category+clang_analyzer+frama_c+cppcheck+warnings_in_this_file, raw_data, 10)
+#test_real_adaboost<-real_adaboost(label~tool_name+severity+redundancy_level+neighbors+category+clang_analyzer+frama_c+cppcheck+warnings_in_this_file+language, raw_data, 10)
 #print("end training")
 #print("begin predictions SAMMER.R")
 #pred_real <- predict( test_real_adaboost,newdata=raw_data)

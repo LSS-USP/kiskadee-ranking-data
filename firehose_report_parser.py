@@ -461,7 +461,7 @@ def extract_features(labeled_reports):
     features_csv = open('features.csv', 'w', newline='')
     feature_writer = csv.writer(features_csv)
     # Remember to reintroduce excluded tools in this list
-    feature_writer.writerow(['location', 'tool_name', 'severity', 'redundancy_level', 'neighbors', 'category', 'clang_analyzer', 'frama_c', 'cppcheck', 'warnings_in_this_file', 'label'])
+    feature_writer.writerow(['location', 'tool_name', 'severity', 'redundancy_level', 'neighbors', 'category', 'clang_analyzer', 'frama_c', 'cppcheck', 'warnings_in_this_file', 'language', 'label'])
     for report in labeled_reports:
         for warning in report.results:
             warning.customfields['clang-analyzer'] = 'no'
@@ -533,13 +533,23 @@ def extract_features(labeled_reports):
                 severity = 0
             elif severity == 'information':
                 severity = 0
+
+            if(re.search('\.c$', file_name)):
+                warning.customfields['language'] = 'c'
+            elif(re.search('\.cpp$', file_name)):
+                warning.customfields['language'] = 'cpp'
+            else:
+                print("non C/C++ file: %s" % file_name)
+                sys.exit(1)
+            language = warning.customfields['language']
+
             in_clanganalyzer = warning.customfields['clang-analyzer']
             in_framac = warning.customfields['frama-c']
             in_cppcheck = warning.customfields['cppcheck']
             # in_flawfinder = warning.customfields['flawfinder']
             warnings_in_this_file = warning.customfields['warnings_in_this_file']
             # Remember to reintroduce excluded tools in this list
-            feature_writer.writerow([location, tool_name, severity, redundancy_level, neighbors, category, in_clanganalyzer, in_framac, in_cppcheck, warnings_in_this_file, label])
+            feature_writer.writerow([location, tool_name, severity, redundancy_level, neighbors, category, in_clanganalyzer, in_framac, in_cppcheck, warnings_in_this_file, language, label])
     features_csv.close()
 
 
