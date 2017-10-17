@@ -69,7 +69,7 @@ def get_reports():
     return results
 
 
-def get_labeled_reports(exclude=[]):
+def get_labeled_reports(*exclude):
     results = []
     firehose_reports = glob.glob(os.path.join('reports', 'firehose', 'labeled_reports', '*.xml'))
     for analyzer in exclude:
@@ -496,8 +496,18 @@ def extract_features(labeled_reports):
                 warning.customfields['category'] = 'overflow'
             elif(re.search('^CWE369', file_name)):
                 warning.customfields['category'] = 'div0'
-            elif(re.search('^CWE4(67|69|76)', file_name)):
+            elif(re.search('^CWE457', file_name)):
+                warning.customfields['category'] = 'uninitvar'
+            elif(re.search('^CWE563', file_name)):
+                warning.customfields['category'] = 'unusedvar'
+            elif(re.search('^CWE4(67|69|76)|^CWE588', file_name)):
                 warning.customfields['category'] = 'pointer'
+            elif(re.search('^CWE48(0|1)', file_name)):
+                warning.customfields['category'] = 'operator'
+            elif(re.search('^CWE68(5|8)', file_name)):
+                warning.customfields['category'] = 'funcparams'
+            elif(re.search('^CWE57(0|1)', file_name)):
+                warning.customfields['category'] = 'alwaysbool'
             elif(re.search('^CWE(401|415|416|562|590|675|761|762)', file_name)):
                 warning.customfields['category'] = 'memory'
             else:
@@ -537,7 +547,7 @@ if __name__ == "__main__":
     if len(sys.argv) > 1:
         if sys.argv[1] == 'features':
             print('extracting...')
-            labeled_reports = get_labeled_reports()
+            labeled_reports = get_labeled_reports('flawfinder')  # exclude flawfinder
             extract_features(labeled_reports)
             sys.exit(0)
 
