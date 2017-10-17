@@ -16,6 +16,13 @@ modelImp <- varImp(model, scale = FALSE)
 print(modelImp)
 ggplot(modelImp)
 
-predict(model, newdata = testing_data)
-predict(model, newdata = testing_data, type="prob")
+predictions = predict(model, newdata = testing_data)
+probabilities = predict(model, newdata = testing_data, type="prob")
+
+confusion_matrix = confusionMatrix(pred, testing_data$label)
+
+print(predictions)
+print(probabilities)
+print(confusion_matrix)
+
 ggplot(model)
