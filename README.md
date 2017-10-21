@@ -88,12 +88,7 @@ of the files analyzed is generated with the `bootstrap.sh` script.
 It is worth mentioning that for Frama-C, we also had to ignore the C++ test
 cases, since this tool can only analyze C programs.
 
-**TODO: GENERATE TABLES WITH NUMBERS OF TESTCASES FOR EACH CWE AND NUMBERS OF
-TESTCASES FOR EACH CWE USED IN THE EXPERIMENT.**
-
 ## Preprocessing the reports to generate the trainning set
-
-**TODO: talk about unrelated flaws (section 8.3 in Juliet documentation)**
 
 After generating the reports, we need to pre-process them before we are able to
 use them to train our model. We need to

@@ -37,3 +37,14 @@ ggplot(model)
 print("LOG: Saving...")
 save.image()
 print("LOG: END, model saved at .RData")
+
+# properly plot importance
+# barplot(iris.adaboost$imp[order(iris.adaboost$imp, decreasing = TRUE)], ylim=c(0, 100), main="Variables Relative Importance", col="lightblue")
+
+# we may want to show the error evolution
+# FOR THIS WE NEED TO TRAIN THE MODEL AGAIN FROM
+#evol.test <- errorevol(iris.adaboost, iris[-train, ])
+#evol.train <- errorevol(iris.adaboost, iris[train, ])
+#plot(evol.test$error, type = "l", ylim = c(0, 1), main="Boosting error versus number of trees", xlab = "Iterations", ylab="Error", col="red", lwd=2)
+#lines(evol.train$error, cex = .5, col = "blue", lty = 2, lwd=2)
+#legend("topleft", c("test", "train"), col = c("red", "blue"), lty=1:2, lwd=2)
