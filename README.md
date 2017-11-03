@@ -164,5 +164,3 @@ tool, file, line, label**
 
 For each of the desired features, a new entry is added to the CSV file
 generated in the step above.
-
-## Generating the ranking model
